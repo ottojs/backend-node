@@ -1,0 +1,16 @@
+{
+  "version": "0.0.1",
+  "name": "boilerplate-backend-node",
+  "description": "Boilerplate Backend in Node.js",
+  "license": "MIT",
+  "author": "Ryan Lelek <ryanlelek@gmail.com>",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "4.19.2"
+  },
+  "devDependencies": {}
+}
