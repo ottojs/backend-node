@@ -12,13 +12,7 @@
 		"ecmaVersion": "latest",
 		"sourceType": "module"
 	},
-	"plugins": [
-		"import",
-		"jest",
-		"node",
-		"promise",
-		"unused-imports"
-	],
+	"plugins": ["import", "jest", "node", "promise", "unused-imports"],
 	"rules": {
 		"camelcase": 0,
 		"curly": 2,

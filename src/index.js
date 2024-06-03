@@ -1,10 +1,11 @@
 // Modules
-import express from "express";
+import express from 'express';
 
 const app = express();
-app.get("/", function (req, res, next) {
-  res.status(200);
-  res.json({ status: "ok" });
+app.get('/', function (req, res, next) {
+	res.status(200);
+	res.json({ status: 'ok' });
+	return next();
 });
 
 export default app;
