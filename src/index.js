@@ -9,6 +9,7 @@ import mw_rate_limit from './mw/rate_limit.mw.js';
 import mw_error_handler from './mw/error_handler.mw.js';
 import mw_request_early from './mw/request_early.mw.js';
 import mw_request_start from './mw/request_start.mw.js';
+import mw_request_end from './mw/request_end.mw.js';
 
 // Create Express App
 const app = express();
@@ -27,5 +28,8 @@ app.all('*', r_404);
 
 // Error Handler
 app.use(mw_error_handler);
+
+// End Middleware
+app.use(mw_request_end);
 
 export default app;
