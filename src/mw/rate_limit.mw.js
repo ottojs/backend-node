@@ -1,6 +1,6 @@
 // Modules
 import { rateLimit } from 'express-rate-limit';
-import config from '../lib/config';
+import config from '../lib/config.js';
 
 // https://github.com/express-rate-limit/express-rate-limit
 // https://express-rate-limit.mintlify.app/reference/configuration

@@ -7,12 +7,14 @@ import r_404 from './routes/404.route.js';
 import mw_helmet from './mw/helmet.mw.js';
 import mw_rate_limit from './mw/rate_limit.mw.js';
 import mw_error_handler from './mw/error_handler.mw.js';
+import mw_request_early from './mw/request_early.mw.js';
 
 // Create Express App
 const app = express();
+app.set('trust proxy', config.IS_PRODUCTION);
 
 // Main Middleware
-app.set('trust proxy', config.IS_PRODUCTION);
+app.use(mw_request_early);
 app.use(mw_helmet);
 app.use(mw_rate_limit);
 
