@@ -1,6 +1,6 @@
 // Modules
 import req from 'supertest';
-import app from '../src/index.js';
+import app from '../../src/index.js';
 
 describe('GET /', () => {
 	let res;

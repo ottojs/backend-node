@@ -1,11 +1,11 @@
 // Modules
 import express from 'express';
+import r_root from './routes/root.route.js';
 
+// Create Express App
 const app = express();
-app.get('/', function (req, res, next) {
-	res.status(200);
-	res.json({ status: 'ok' });
-	return next();
-});
+
+// Attach Routes
+app.get('/', r_root);
 
 export default app;
