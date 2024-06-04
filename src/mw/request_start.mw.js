@@ -20,7 +20,7 @@ function mw_request_start(req, res, next) {
 	res.locals = {};
 
 	// Mark as heading to routes
-	req.appdata.time_route = Date.now();
+	req.appdata.time_routes = Date.now();
 
 	// DONE
 	//log('[MW:REQINIT] APP DATA', req.appdata);

@@ -51,12 +51,12 @@ describe('mw_request_start()', () => {
 			done();
 		});
 	});
-	it('should set req.appdata.time_route', (done) => {
+	it('should set req.appdata.time_routes', (done) => {
 		const req = new_req();
 		mw_request_start(req, {}, () => {
-			expect(req.appdata).toHaveProperty('time_route');
-			expect(req.appdata.time_route).toBeGreaterThan(Date.now() - 1000);
-			expect(req.appdata.time_route).toBeLessThan(Date.now() + 1000);
+			expect(req.appdata).toHaveProperty('time_routes');
+			expect(req.appdata.time_routes).toBeGreaterThan(Date.now() - 1000);
+			expect(req.appdata.time_routes).toBeLessThan(Date.now() + 1000);
 			done();
 		});
 	});

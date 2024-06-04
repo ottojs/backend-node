@@ -19,7 +19,7 @@ function env_default(key, default_val) {
 
 // Valid Environment Check
 function is_valid_environment(NODE_ENV) {
-	// http://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production
+	// https://expressjs.com/en/advanced/best-practice-performance.html#set-node_env-to-production
 	// https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables
 	const valid_envs = ['development', 'test', 'production'];
 	if (_.indexOf(valid_envs, NODE_ENV) === -1) {

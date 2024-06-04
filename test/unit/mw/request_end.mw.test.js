@@ -7,6 +7,13 @@ function new_req() {
 		query: {},
 		appdata: {
 			time_start: Date.now() - 5000,
+			time_routes: Date.now() - 3000,
+			method: 'GET',
+			path: '/test',
+			ip: '127.0.0.1',
+			ua: {},
+			referrer: {},
+			utm: {},
 		},
 	};
 }
