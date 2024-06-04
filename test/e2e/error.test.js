@@ -1,11 +1,16 @@
 // Modules
 import req from 'supertest';
-import app from '../../src/index.js';
+import express from 'express';
+import mw_error_handler from '../../src/mw/error_handler.mw.js';
 
 // Add Error Route for Testing
+// We create a new express app because editing the stack is difficult
+// This is a special scenario. Generally you should load app from src/index.js
+const app = express();
 app.get('/error-temp', function (req, res, next) {
 	return next(new Error('unknown error'));
 });
+app.use(mw_error_handler);
 
 describe('GET /error-temp', () => {
 	let res;
