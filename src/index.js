@@ -9,6 +9,7 @@ import mw_rate_limit from './mw/rate_limit.mw.js';
 import mw_error_handler from './mw/error_handler.mw.js';
 import mw_request_early from './mw/request_early.mw.js';
 import mw_request_start from './mw/request_start.mw.js';
+import mw_load_utm from './mw/load_utm.mw.js';
 import mw_request_end from './mw/request_end.mw.js';
 
 // Create Express App
@@ -20,6 +21,7 @@ app.use(mw_request_early);
 app.use(mw_helmet);
 app.use(mw_rate_limit);
 app.use(mw_request_start);
+app.use(mw_load_utm);
 
 // Attach Routes
 app.get('/', r_root);
