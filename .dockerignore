@@ -1,0 +1,10 @@
+# We use an allow-list
+# First we ignore everything with *
+*
+
+# Then we specify the allowed files and
+# directories we want in our container
+!package.json
+!src
+!server.js
+!LICENSE
