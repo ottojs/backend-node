@@ -12,7 +12,7 @@
 	},
 	"scripts": {
 		"start": "node server.js",
-		"test": "cross-env NODE_OPTIONS=--experimental-vm-modules jest --detectOpenHandles",
+		"test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_ENV=test jest --detectOpenHandles",
 		"test:unit": "npm run test -- test/unit",
 		"test:e2e": "npm run test -- test/e2e",
 		"lint": "eslint .",
@@ -35,7 +35,8 @@
 		}
 	},
 	"dependencies": {
-		"express": "4.19.2"
+		"express": "4.19.2",
+		"lodash": "4.17.21"
 	},
 	"devDependencies": {
 		"cross-env": "7.0.3",
