@@ -12,6 +12,7 @@ const NODE_ENV = env_required('NODE_ENV');
 // Load Required Variables
 const LISTEN = env_default('LISTEN', '0.0.0.0');
 const PORT = parseInt(env_default('PORT', '8080'), 10);
+const SQL_URI = env_required('SQL_URI');
 
 // Valid Environment Check
 is_valid_environment(NODE_ENV);
@@ -23,6 +24,7 @@ export default {
 	NODE_ENV,
 	LISTEN,
 	PORT,
+	SQL_URI,
 	// Calculated
 	IS_PRODUCTION,
 };

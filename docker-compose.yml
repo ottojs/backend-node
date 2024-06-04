@@ -1,0 +1,92 @@
+---
+# WARNING: This is only for making your local development easier
+# DEPLOYING THIS IS NOT RECOMMENDED
+#
+# Using Podman instead of Docker is recommended, due to new Docker license
+# Podman is a fork of Docker from Red Hat / IBM and is generally 1:1 compatible
+# All you have to do usually is replace "docker" commands with "podman"
+# So "docker ps -a" would be "podman ps -a"
+# https://podman.io/
+#
+# Usage of this compose file
+# podman-compose up -d
+# docker compose up -d
+#
+# Access PostgreSQL Web UI at http://localhost:8888/
+# (see below pgadmin4 section for credentials)
+#
+# Make sure you right-click "Servers" in the sidebar and "Register" a "Server"
+# in the "Connection" tab, use "postgresql" or the specified IP address as the host name
+
+######################
+# New to PostgreSQL CLI?
+# https://www.tutorialspoint.com/postgresql/index.htm
+#
+# Connecting (password is set below at POSTGRES_PASSWORD)
+# Docker Container: docker exec -it postgresql bash -c 'psql -h 127.0.0.1 -U localuser localdb'
+# Local Short:      psql -h 127.0.0.1 -U localuser -W localdb
+# Local Long:       psql --host=127.0.0.1 --username=localuser -W localdb
+#
+# List Databases: \l (for "list")
+# Use Database:   \c [database] (for "connect")
+# Show Tables:    \d or \dt (for "describe" or "describe tables")
+# Exit with "exit"
+
+services:
+  ##################
+  ### POSTGRESQL ###
+  ##################
+  # https://hub.docker.com/_/postgres
+  # https://www.postgresql.org/docs/release/
+  postgresql:
+    image: postgres:16.3-alpine3.20
+    container_name: postgresql
+    restart: always
+    ports:
+      # Host:Container
+      - "5432:5432"
+    volumes:
+      - postgresql-data:/var/lib/postgresql/data
+    environment:
+      # CHANGE THESE (probably ok for local device)
+      POSTGRES_USER: localuser
+      POSTGRES_PASSWORD: localroot
+      POSTGRES_DB: localdb
+    networks:
+      appnet:
+        ipv4_address: 192.168.10.102
+
+  #######################################
+  ##### OPTIONAL - POSTGRESQL WEB UI ####
+  #######################################
+  # https://hub.docker.com/r/dpage/pgadmin4/tags
+  # https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
+  pgadmin4:
+    image: dpage/pgadmin4:8.7
+    container_name: pgadmin4
+    #user: root
+    user: pgadmin
+    restart: always
+    ports:
+      # Host:Container
+      - 8888:80
+    volumes:
+      - pgadmin4-data:/var/lib/pgadmin
+    environment:
+      # CHANGE THESE (probably ok for local device)
+      PGADMIN_DEFAULT_EMAIL: user@example.com
+      PGADMIN_DEFAULT_PASSWORD: insecurepassword
+      PGADMIN_CONFIG_ENHANCED_COOKIE_PROTECTION: "True"
+    networks:
+      appnet:
+        ipv4_address: 192.168.10.103
+
+volumes:
+  postgresql-data:
+  pgadmin4-data:
+
+networks:
+  appnet:
+    ipam:
+      config:
+        - subnet: "192.168.10.0/24"

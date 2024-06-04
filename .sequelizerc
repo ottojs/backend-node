@@ -1,0 +1,22 @@
+'use strict';
+
+// Modules
+const path = require('node:path');
+const debug = require('debug');
+const log = debug('app:sequelizerc');
+
+// Config
+const config = {
+	'models-path': path.resolve('src', 'sql', 'models'),
+	'seeders-path': path.resolve('src', 'sql', 'seeders'),
+	'migrations-path': path.resolve('src', 'sql', 'migrations'),
+};
+
+// Connection String
+if (!process.env.SQL_URI) {
+	config.url = 'sqlite::memory:';
+} else {
+	config.url = process.env.SQL_URI;
+}
+
+module.exports = exports = config;
