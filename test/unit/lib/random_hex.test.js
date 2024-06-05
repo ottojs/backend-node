@@ -6,7 +6,7 @@ describe('random_hex()', () => {
 		const hex1 = random_hex();
 		const hex2 = random_hex();
 		expect(hex1).not.toEqual(hex2);
-		const regex = /\#[A-F0-9]{6}/;
+		const regex = /#[A-F0-9]{6}/;
 		expect(hex1).toMatch(regex);
 		expect(hex2).toMatch(regex);
 	});

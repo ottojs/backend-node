@@ -1,5 +1,5 @@
 // Modules
-import { randomUUID } from 'node:crypto'; // randomBytes
+import { randomUUID } from 'node:crypto';
 import debug from 'debug';
 const log = debug('app:mw:request_start');
 
