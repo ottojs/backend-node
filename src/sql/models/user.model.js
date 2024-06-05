@@ -57,7 +57,7 @@ export default function ModelUserInit(sequelize) {
 						.min(1)
 						.max(60)
 						.optional()
-						.or(z.literal(null)),
+						.or(z.literal('')),
 				})
 				.safeParse(input);
 		}
@@ -127,7 +127,7 @@ export default function ModelUserInit(sequelize) {
 						name_first: '',
 						name_last: '',
 						color: random_hex(),
-						picture: null,
+						picture: '',
 					});
 				},
 			},

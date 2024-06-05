@@ -20,11 +20,11 @@ module.exports = {
 			},
 			headers_raw: {
 				type: Sequelize.TEXT,
-				allowNull: true,
+				allowNull: false,
 			},
 			body_raw: {
 				type: Sequelize.TEXT,
-				allowNull: true,
+				allowNull: false,
 			},
 			created_at: {
 				type: Sequelize.DATE,

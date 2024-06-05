@@ -43,11 +43,11 @@ export default function ModelCSPReportInit(sequelize) {
 			},
 			headers_raw: {
 				type: DataTypes.TEXT,
-				allowNull: true,
+				allowNull: false,
 			},
 			body_raw: {
 				type: DataTypes.TEXT,
-				allowNull: true,
+				allowNull: false,
 			},
 		},
 		{
@@ -56,6 +56,8 @@ export default function ModelCSPReportInit(sequelize) {
 				beforeValidate: (obj) => {
 					_.defaults(obj, {
 						uuid: randomUUID(),
+						headers_raw: '',
+						body_raw: '',
 					});
 				},
 			},
