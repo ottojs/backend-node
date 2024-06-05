@@ -3,6 +3,7 @@
 import { Sequelize } from 'sequelize';
 import ModelRequestLog from './models/request_log.model.js';
 import ModelCSPReport from './models/csp_report.model.js';
+import ModelAccount from './models/account.model.js';
 import debug from 'debug';
 const log = debug('app:sql');
 
@@ -81,6 +82,7 @@ async function initialize() {
 	// Initialize Models
 	models.request_log = ModelRequestLog(sequelize, models);
 	models.csp_report = ModelCSPReport(sequelize, models);
+	models.account = ModelAccount(sequelize, models);
 
 	// Connect to Database
 	db = await connect(sequelize);
@@ -122,6 +124,8 @@ await initialize();
 // Recommendation is to only use the default export
 export { configure, initialize, connect, reset };
 export default {
+	// Including underscored private resources
+	// But try to use "models" in most circumstances
 	_sequelize: sequelize,
 	_db: db,
 	models: models,
