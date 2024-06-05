@@ -33,6 +33,34 @@
 # Exit with "exit"
 
 services:
+  # ######################
+  # ##### LOCAL CODE #####
+  # ######################
+  # # This is OPTIONAL!
+  # # Only uncomment if you want to run this as part of your compose cluster
+  # # You can also use compose only for the PostgreSQL database and UI
+  # # and then interact as normal with the code without it being in a container
+  # backend:
+  #   build:
+  #     context: .
+  #   container_name: backend
+  #   restart: always
+  #   ports:
+  #     # Host:Container
+  #     - "8080:8080"
+  #   environment:
+  #     DEBUG: ""
+  #     NODE_ENV: "development"
+  #     LISTEN: "0.0.0.0"
+  #     PORT: "8080"
+  #     SQL_URI: "postgresql://localuser:localroot@postgresql:5432/localdb?connect_timeout=10&sslmode=disable"
+  #     # CHANGE THESE
+  #     COOKIE_SECRET: "cookie-secret"
+  #     CSRF_SECRET: "csrf-secret"
+  #   networks:
+  #     appnet:
+  #       ipv4_address: 192.168.10.101
+
   ##################
   ### POSTGRESQL ###
   ##################
