@@ -1,6 +1,7 @@
 // Modules
 //import fs from "node:fs";
 import { Sequelize } from 'sequelize';
+import ModelRequestLog from './models/request_log.model.js';
 import debug from 'debug';
 const log = debug('app:sql');
 
@@ -10,6 +11,7 @@ let sequelize = null;
 // you can also use "log" function variable or "console.log"
 // Using false here because seeing the SQL statements can get noisy
 const logger = false;
+const models = {};
 
 // Returns a configured Sequelize object
 function configure(config) {
@@ -75,12 +77,15 @@ async function initialize() {
 	//       but that may create more clutter
 	sequelize = configure(process.env);
 
+	// Initialize Models
+	models.request_log = ModelRequestLog(sequelize, models);
+
 	// Connect to Database
 	db = await connect(sequelize);
 
 	// Using Migrations is recommended... but this option is available
 	// WARNING: Use at your own peril
-	await sequelize.sync();
+	//await sequelize.sync();
 	return db;
 }
 
@@ -117,4 +122,5 @@ export { configure, initialize, connect, reset };
 export default {
 	_sequelize: sequelize,
 	_db: db,
+	models: models,
 };

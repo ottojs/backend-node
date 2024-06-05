@@ -11,7 +11,10 @@
 		"npm": ">=10.7.0"
 	},
 	"scripts": {
-		"start": "node server.js",
+		"start": "npm run db:up && node server.js",
+		"db:up": "sequelize-cli db:migrate",
+		"db:down": "sequelize-cli db:migrate:undo",
+		"db:down:all": "sequelize-cli db:migrate:undo:all",
 		"test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_ENV='test' DEBUG='' SQL_URI='sqlite::memory:' jest --detectOpenHandles",
 		"test:unit": "npm run test -- test/unit",
 		"test:e2e": "npm run test -- test/e2e",
@@ -26,7 +29,8 @@
 		],
 		"collectCoverage": true,
 		"collectCoverageFrom": [
-			"./src/**"
+			"./src/**",
+			"!./src/sql/migrations/**"
 		],
 		"coverageThreshold": {
 			"global": {
