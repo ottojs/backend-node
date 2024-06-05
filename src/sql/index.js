@@ -2,6 +2,7 @@
 //import fs from "node:fs";
 import { Sequelize } from 'sequelize';
 import ModelRequestLog from './models/request_log.model.js';
+import ModelCSPReport from './models/csp_report.model.js';
 import debug from 'debug';
 const log = debug('app:sql');
 
@@ -79,6 +80,7 @@ async function initialize() {
 
 	// Initialize Models
 	models.request_log = ModelRequestLog(sequelize, models);
+	models.csp_report = ModelCSPReport(sequelize, models);
 
 	// Connect to Database
 	db = await connect(sequelize);

@@ -6,10 +6,7 @@
 	"author": "Ryan Lelek <ryanlelek@gmail.com>",
 	"type": "module",
 	"main": "src/index.js",
-	"engines": {
-		"node": ">=20.14.0",
-		"npm": ">=10.7.0"
-	},
+	"private": false,
 	"scripts": {
 		"start": "npm run db:up && node server.js",
 		"db:up": "sequelize-cli db:migrate",
@@ -22,6 +19,10 @@
 		"lint:fix": "eslint --fix .",
 		"prettier": "prettier --check .",
 		"prettier:fix": "prettier --write ."
+	},
+	"engines": {
+		"node": ">=20.14.0",
+		"npm": ">=10.7.0"
 	},
 	"jest": {
 		"setupFilesAfterEnv": [
@@ -42,6 +43,7 @@
 		}
 	},
 	"dependencies": {
+		"body-parser": "1.20.2",
 		"debug": "4.3.5",
 		"express": "4.19.2",
 		"express-rate-limit": "7.3.0",
