@@ -4,6 +4,7 @@ import { Sequelize } from 'sequelize';
 import ModelRequestLog from './models/request_log.model.js';
 import ModelCSPReport from './models/csp_report.model.js';
 import ModelAccount from './models/account.model.js';
+import ModelUser from './models/user.model.js';
 import debug from 'debug';
 const log = debug('app:sql');
 
@@ -83,6 +84,7 @@ async function initialize() {
 	models.request_log = ModelRequestLog(sequelize, models);
 	models.csp_report = ModelCSPReport(sequelize, models);
 	models.account = ModelAccount(sequelize, models);
+	models.user = ModelUser(sequelize, models);
 
 	// Connect to Database
 	db = await connect(sequelize);
