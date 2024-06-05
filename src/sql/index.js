@@ -5,6 +5,7 @@ import ModelRequestLog from './models/request_log.model.js';
 import ModelCSPReport from './models/csp_report.model.js';
 import ModelAccount from './models/account.model.js';
 import ModelUser from './models/user.model.js';
+import ModelJoinAccountUser from './models/join_account_user.model.js';
 import debug from 'debug';
 const log = debug('app:sql');
 
@@ -85,6 +86,20 @@ async function initialize() {
 	models.csp_report = ModelCSPReport(sequelize, models);
 	models.account = ModelAccount(sequelize, models);
 	models.user = ModelUser(sequelize, models);
+	models.join_account_user = ModelJoinAccountUser(sequelize, models);
+
+	// Glue the models together with associations
+	// Required to do the 2-way data binding
+
+	// Accounts <=> Users
+	models.account.belongsToMany(models.user, {
+		through: models.join_account_user,
+		foreignKey: 'account_id',
+	});
+	models.user.belongsToMany(models.account, {
+		through: models.join_account_user,
+		foreignKey: 'user_id',
+	});
 
 	// Connect to Database
 	db = await connect(sequelize);
