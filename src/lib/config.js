@@ -20,11 +20,15 @@ is_valid_environment(NODE_ENV);
 // Production Environment Check
 const IS_PRODUCTION = is_production(NODE_ENV);
 
+// Register Code
+const REGISTER_CODE = '1234';
+
 export default {
 	NODE_ENV,
 	LISTEN,
 	PORT,
 	SQL_URI,
+	REGISTER_CODE,
 	// Calculated
 	IS_PRODUCTION,
 };

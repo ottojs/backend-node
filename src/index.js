@@ -14,6 +14,7 @@ import mw_request_end from './mw/request_end.mw.js';
 import r_root from './routes/root.route.js';
 import r_health from './routes/health.route.js';
 import r_csp_report from './routes/csp_report.route.js';
+import r_v0_users_post from './routes/v0/users_post.route.js';
 import r_404 from './routes/404.route.js';
 
 // Create Express App
@@ -35,6 +36,7 @@ app.use(mw_load_utm);
 app.get('/', r_root);
 app.get('/health', r_health);
 app.post('/csp-report', r_csp_report);
+app.post('/v0/users', r_v0_users_post);
 app.all('*', r_404);
 
 // Error Handler
