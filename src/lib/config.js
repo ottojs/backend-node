@@ -20,6 +20,10 @@ is_valid_environment(NODE_ENV);
 // Production Environment Check
 const IS_PRODUCTION = is_production(NODE_ENV);
 
+// Cookies
+const COOKIE_SECRET = env_required('COOKIE_SECRET');
+const COOKIE_NAME_SESSION = 'sid';
+
 // Register Code
 const REGISTER_CODE = '1234';
 
@@ -28,6 +32,8 @@ export default {
 	LISTEN,
 	PORT,
 	SQL_URI,
+	COOKIE_SECRET,
+	COOKIE_NAME_SESSION,
 	REGISTER_CODE,
 	// Calculated
 	IS_PRODUCTION,

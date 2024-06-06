@@ -1,6 +1,7 @@
 // Modules
 import express from 'express';
 import body_parser from 'body-parser';
+import cookie_parser from 'cookie-parser';
 import config from './lib/config.js';
 import mw_helmet from './mw/helmet.mw.js';
 import mw_rate_limit from './mw/rate_limit.mw.js';
@@ -17,9 +18,12 @@ import r_csp_report from './routes/csp_report.route.js';
 import r_v0_users_post from './routes/v0/users_post.route.js';
 import r_404 from './routes/404.route.js';
 
-// Create Express App
+// Initialize Express
 const app = express();
 app.set('trust proxy', config.IS_PRODUCTION);
+
+// Special Routes
+app.get('/health', r_health);
 
 // Main Middleware
 app.use(mw_request_early);
@@ -27,6 +31,7 @@ app.use(mw_helmet);
 app.use(mw_rate_limit);
 const body_content_types = ['application/json', 'application/csp-report'];
 app.use(body_parser.json({ type: body_content_types }));
+app.use(cookie_parser(config.COOKIE_SECRET));
 app.use(mw_request_start);
 app.use(mw_load_browser);
 app.use(mw_load_referrer);
@@ -34,7 +39,6 @@ app.use(mw_load_utm);
 
 // Attach Routes
 app.get('/', r_root);
-app.get('/health', r_health);
 app.post('/csp-report', r_csp_report);
 app.post('/v0/users', r_v0_users_post);
 app.all('*', r_404);

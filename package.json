@@ -12,7 +12,7 @@
 		"db:up": "sequelize-cli db:migrate",
 		"db:down": "sequelize-cli db:migrate:undo",
 		"db:down:all": "sequelize-cli db:migrate:undo:all",
-		"test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_ENV='test' DEBUG='' SQL_URI='sqlite::memory:' jest --detectOpenHandles",
+		"test": "cross-env NODE_OPTIONS=--experimental-vm-modules NODE_ENV='test' DEBUG='' SQL_URI='sqlite::memory:' COOKIE_SECRET='cookie-secret' jest --detectOpenHandles",
 		"test:unit": "npm run test -- test/unit",
 		"test:e2e": "npm run test -- test/e2e",
 		"lint": "eslint .",
@@ -45,6 +45,7 @@
 	"dependencies": {
 		"argon2": "0.40.3",
 		"body-parser": "1.20.2",
+		"cookie-parser": "1.4.6",
 		"debug": "4.3.5",
 		"express": "4.19.2",
 		"express-rate-limit": "7.3.0",
