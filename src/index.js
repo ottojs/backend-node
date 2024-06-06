@@ -11,6 +11,7 @@ import mw_request_start from './mw/request_start.mw.js';
 import mw_load_browser from './mw/load_browser.mw.js';
 import mw_load_referrer from './mw/load_referrer.mw.js';
 import mw_load_utm from './mw/load_utm.mw.js';
+import mw_load_session from './mw/load_session.mw.js';
 import mw_request_end from './mw/request_end.mw.js';
 import r_root from './routes/root.route.js';
 import r_health from './routes/health.route.js';
@@ -37,6 +38,7 @@ app.use(mw_request_start);
 app.use(mw_load_browser);
 app.use(mw_load_referrer);
 app.use(mw_load_utm);
+app.use(mw_load_session);
 
 // Attach Routes
 app.get('/', r_root);
