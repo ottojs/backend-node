@@ -2,7 +2,7 @@
 import sql from '../../sql/index.js';
 import random_hex from '../../lib/random_hex.js';
 
-async function r_v0_users_patch(req, res, next) {
+async function r_v0_users_patch_id(req, res, next) {
 	if (req.params.uuid !== 'me') {
 		return next(new Error('forbidden'));
 	}
@@ -32,4 +32,4 @@ async function r_v0_users_patch(req, res, next) {
 	return next();
 }
 
-export default r_v0_users_patch;
+export default r_v0_users_patch_id;
