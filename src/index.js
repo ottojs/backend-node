@@ -17,6 +17,7 @@ import mw_request_end from './mw/request_end.mw.js';
 import r_root from './routes/root.route.js';
 import r_health from './routes/health.route.js';
 import r_csp_report from './routes/csp_report.route.js';
+import r_v0_accounts_get from './routes/v0/accounts_get.route.js';
 import r_v0_users_get from './routes/v0/users_get.route.js';
 import r_v0_users_get_id from './routes/v0/users_get_id.route.js';
 import r_v0_users_post from './routes/v0/users_post.route.js';
@@ -50,6 +51,7 @@ app.use(mw_load_user);
 // Attach Routes
 app.get('/', r_root);
 app.post('/csp-report', r_csp_report);
+app.get('/v0/accounts', r_v0_accounts_get);
 app.get('/v0/users', r_v0_users_get);
 app.get('/v0/users/:uuid', r_v0_users_get_id);
 app.post('/v0/users', r_v0_users_post);
