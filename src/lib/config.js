@@ -24,6 +24,12 @@ const IS_PRODUCTION = is_production(NODE_ENV);
 const COOKIE_SECRET = env_required('COOKIE_SECRET');
 const COOKIE_NAME_SESSION = 'sid';
 
+// CORS
+const CORS_ALLOWED_ORIGINS = env_default(
+	'CORS_ALLOWED_ORIGINS',
+	'http://localhost:3000'
+).split(',');
+
 // Register Code
 const REGISTER_CODE = '1234';
 
@@ -34,6 +40,7 @@ export default {
 	SQL_URI,
 	COOKIE_SECRET,
 	COOKIE_NAME_SESSION,
+	CORS_ALLOWED_ORIGINS,
 	REGISTER_CODE,
 	// Calculated
 	IS_PRODUCTION,
