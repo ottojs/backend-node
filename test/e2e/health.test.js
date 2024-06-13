@@ -10,7 +10,7 @@ describe('GET /health', () => {
 	it('should return status code 200', () => {
 		expect(res.statusCode).toEqual(200);
 	});
-	it('should return "ok"', () => {
+	it('should return { "status" : "ok" }', () => {
 		expect(res.body).toEqual({
 			status: 'ok',
 		});

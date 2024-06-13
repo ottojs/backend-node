@@ -19,7 +19,7 @@ async function r_v0_users_post(req, res, next) {
 	// Hash Password In-Place
 	// We do this regardless if user exists
 	// for security against timing attacks
-	check.data.password = await argon2.hash(check.data.password);
+	const hashed_password = await argon2.hash(check.data.password);
 
 	// Load User
 	const found_user = await sql.models.user.findOne({
@@ -41,7 +41,7 @@ async function r_v0_users_post(req, res, next) {
 			const created_user = await sql.models.user.create(
 				{
 					username: check.data.username,
-					password: check.data.password,
+					password: hashed_password,
 				},
 				{
 					transaction: t,
@@ -55,7 +55,8 @@ async function r_v0_users_post(req, res, next) {
 		} catch (error) {
 			// If the execution reaches this line, an error was thrown.
 			// We rollback the transaction
-			console.log(error);
+			// TODO: Handle better
+			console.error('[ROUTE:POST:USERS] Transaction Error:', error);
 			await t.rollback();
 		}
 	}
