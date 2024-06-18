@@ -1,0 +1,38 @@
+---
+name: Deploy Node.js project to Azure Function App
+
+# All Branches (including PR)
+on: [push]
+
+# Single Branch
+# on:
+#   push:
+#     branches: ["main"]
+
+jobs:
+  build:
+    environment: build
+    strategy:
+      matrix:
+        # OS List
+        # https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners/about-github-hosted-runners#standard-github-hosted-runners-for-public-repositories
+        os: [ubuntu-latest, windows-latest]
+        # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
+        node_version: [20.x, 22.x]
+    runs-on: ${{ matrix.os }}
+    steps:
+      # https://github.com/marketplace/actions/checkout
+      - name: "Checkout Code"
+        uses: actions/checkout@v4
+
+      # https://github.com/marketplace/actions/setup-node-js-environment
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node_version }}
+
+      - name: "Install Dependencies"
+        run: npm ci
+
+      - name: "Run Tests"
+        run: npm test
