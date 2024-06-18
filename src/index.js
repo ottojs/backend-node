@@ -56,7 +56,7 @@ app.use(mw_load_user);
 app.get('/', r_root);
 app.post('/csp-report', r_csp_report);
 app.get('/v0/accounts', [mw_require_login, r_v0_accounts_get]);
-app.patch('/v0/accounts/:uuid', r_v0_accounts_patch_id);
+app.patch('/v0/accounts/:uuid', [mw_require_login, r_v0_accounts_patch_id]);
 app.get('/v0/users', r_v0_users_get);
 app.get('/v0/users/:uuid', r_v0_users_get_id);
 app.post('/v0/users', r_v0_users_post);
