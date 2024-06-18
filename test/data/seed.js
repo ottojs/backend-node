@@ -65,6 +65,17 @@ async function users() {
 		user_id: 2,
 		roles: 'user',
 	});
+
+	// We return this for ease of accessing UUIDs, etc
+	const users = await sql.models.user.findAll({
+		include: [
+			{
+				model: sql.models.account,
+			},
+		],
+		order: [['id', 'ASC']],
+	});
+	return users;
 }
 
 export default {
