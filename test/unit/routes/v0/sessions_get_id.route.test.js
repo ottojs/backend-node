@@ -3,10 +3,9 @@ import { randomUUID } from 'node:crypto';
 import r_v0_sessions_get_id from '../../../../src/routes/v0/sessions_get_id.route.js';
 
 function new_req() {
-	const theuuid = randomUUID();
 	return {
 		params: {
-			uuid: theuuid,
+			uuid: 'me',
 		},
 		body: {
 			name: 'AccountNewName',
@@ -34,6 +33,16 @@ function new_res() {
 }
 
 describe('r_v0_sessions_get_id()', () => {
+	it('should return forbidden when uuid is not "me"', (done) => {
+		const req = new_req();
+		req.params.uuid = randomUUID();
+		req.user.ModelAccounts = [];
+		const res = new_res();
+		r_v0_sessions_get_id(req, res, (e) => {
+			expect(e.message).toEqual('forbidden');
+			done();
+		});
+	});
 	it('should return accounts as an empty array when user has zero accounts', (done) => {
 		const req = new_req();
 		req.user.ModelAccounts = [];

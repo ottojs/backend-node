@@ -24,7 +24,7 @@ describe('PATCH /v0/accounts/:uuid', () => {
 		it('should return status code 401', () => {
 			expect(res.statusCode).toEqual(401);
 		});
-		it('should return body forbidden', () => {
+		it('should return body unauthorized', () => {
 			expect(res.body).toEqual({
 				status: 'error',
 				error: {

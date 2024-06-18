@@ -4,12 +4,12 @@ import seed from '../../data/seed.js';
 import app from '../../../src/index.js';
 
 describe('GET /v0/accounts', () => {
-	let cookies_user;
+	let cookies_owner;
 	let cookies_inactive;
 	beforeAll(async () => {
 		await seed.reset();
 		await seed.users();
-		cookies_user = await seed.login('owner@example.com');
+		cookies_owner = await seed.login('owner@example.com');
 		cookies_inactive = await seed.login('inactive@example.com');
 	});
 	describe('when not logged in', () => {
@@ -36,7 +36,7 @@ describe('GET /v0/accounts', () => {
 				.get('/v0/accounts')
 				.set('Accept', 'application/json')
 				.set('Content-Type', 'application/json')
-				.set('Cookie', cookies_user)
+				.set('Cookie', cookies_owner)
 				.send({});
 			expect(res.statusCode).toEqual(200);
 			expect(res.body).toMatchObject({
