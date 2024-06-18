@@ -16,6 +16,7 @@ function r_csp_report(req, res, next) {
 	res.json({
 		status: 'created',
 	});
+	// TODO: We may not want to call next() and end things here
 	return next();
 }
 
