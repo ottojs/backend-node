@@ -63,7 +63,7 @@ app.post('/v0/users', r_v0_users_post);
 app.patch('/v0/users/:uuid', r_v0_users_patch_id);
 app.get('/v0/sessions/:uuid', r_v0_sessions_get_id);
 app.post('/v0/sessions', r_v0_sessions_post);
-app.delete('/v0/sessions/:uuid', r_v0_sessions_delete);
+app.delete('/v0/sessions/:uuid', [mw_require_login, r_v0_sessions_delete]);
 app.all('*', r_404);
 
 // Error Handler
