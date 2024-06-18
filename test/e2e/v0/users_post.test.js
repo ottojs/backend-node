@@ -79,7 +79,7 @@ describe('POST /v0/users', () => {
 		let res;
 		beforeAll(async () => {
 			const body_user_exists = valid_body();
-			body_user_exists.username = 'user@example.com';
+			body_user_exists.username = 'owner@example.com';
 			res = await req(app)
 				.post('/v0/users')
 				.set('Accept', 'application/json')

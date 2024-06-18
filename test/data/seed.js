@@ -45,9 +45,15 @@ async function users() {
 		name_last: 'User',
 	});
 	await sql.models.user.create({
-		username: 'user@example.com',
+		username: 'owner@example.com',
 		password: password_hash,
-		name_first: 'Basic',
+		name_first: 'Owner',
+		name_last: 'User',
+	});
+	await sql.models.user.create({
+		username: 'normal@example.com',
+		password: password_hash,
+		name_first: 'Normal',
 		name_last: 'User',
 	});
 	await sql.models.user.create({
@@ -65,7 +71,12 @@ async function users() {
 	await sql.models.join_account_user.create({
 		account_id: 2,
 		user_id: 2,
-		roles: 'user',
+		roles: 'owner',
+	});
+	await sql.models.join_account_user.create({
+		account_id: 2,
+		user_id: 3,
+		roles: 'member',
 	});
 
 	// We return this for ease of accessing UUIDs, etc

@@ -38,11 +38,11 @@ describe('mw_load_user()', () => {
 		it('should set req.user to that user and expand accounts/roles', async () => {
 			const req = {
 				session: {
-					user_id: 3,
+					user_id: 4,
 				},
 			};
 			await mw_load_user(req, {}, function () {});
-			expect(req.user).toHaveProperty('id', 3);
+			expect(req.user).toHaveProperty('id', 4);
 			expect(req.user).toHaveProperty('username', 'inactive@example.com');
 			expect(req.user).toHaveProperty('name_first', 'Inactive');
 			expect(req.user).toHaveProperty('name_last', 'User');

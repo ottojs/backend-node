@@ -17,7 +17,7 @@ describe('PATCH /v0/users/:uuid', () => {
 	beforeAll(async () => {
 		await seed.reset();
 		await seed.users();
-		cookies = await seed.login('user@example.com');
+		cookies = await seed.login('owner@example.com');
 	});
 	describe('when uuid is not "me"', () => {
 		let res;
@@ -67,7 +67,7 @@ describe('PATCH /v0/users/:uuid', () => {
 				status: 'ok',
 				data: {
 					user: {
-						username: 'user@example.com',
+						username: 'owner@example.com',
 						name_first: 'FirstUpdate',
 						name_last: 'Last',
 						picture: '',
@@ -89,7 +89,7 @@ describe('PATCH /v0/users/:uuid', () => {
 				status: 'ok',
 				data: {
 					user: {
-						username: 'user@example.com',
+						username: 'owner@example.com',
 						name_first: 'First',
 						name_last: 'LastUpdate',
 						picture: '',
@@ -111,7 +111,7 @@ describe('PATCH /v0/users/:uuid', () => {
 				status: 'ok',
 				data: {
 					user: {
-						username: 'user@example.com',
+						username: 'owner@example.com',
 						name_first: 'First',
 						name_last: 'Last',
 						picture: 'picture.jpg',

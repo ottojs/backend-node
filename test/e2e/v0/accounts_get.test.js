@@ -9,7 +9,7 @@ describe('GET /v0/accounts', () => {
 	beforeAll(async () => {
 		await seed.reset();
 		await seed.users();
-		cookies_user = await seed.login('user@example.com');
+		cookies_user = await seed.login('owner@example.com');
 		cookies_inactive = await seed.login('inactive@example.com');
 	});
 	describe('when not logged in', () => {

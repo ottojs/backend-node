@@ -51,10 +51,16 @@ describe('r_v0_users_get()', () => {
 							username: 'admin@example.com',
 						},
 						{
-							name_first: 'Basic',
+							name_first: 'Owner',
 							name_last: 'User',
 							picture: '',
-							username: 'user@example.com',
+							username: 'owner@example.com',
+						},
+						{
+							name_first: 'Normal',
+							name_last: 'User',
+							picture: '',
+							username: 'normal@example.com',
 						},
 						{
 							name_first: 'Inactive',
