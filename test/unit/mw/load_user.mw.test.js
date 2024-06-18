@@ -1,11 +1,11 @@
 // Modules
-import helper from '../../helpers/db.js';
+import seed from '../../data/seed.js';
 import mw_load_user from '../../../src/mw/load_user.mw.js';
 
 describe('mw_load_user()', () => {
 	beforeAll(async () => {
-		await helper.reset();
-		await helper.users();
+		await seed.reset();
+		await seed.users();
 	});
 	describe('when req.session is undefined', () => {
 		it('should set req.user to null', async () => {

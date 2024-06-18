@@ -1,7 +1,7 @@
 // Modules
 import { randomUUID } from 'node:crypto';
 import sql from '../../../../src/sql/index.js';
-import helper from '../../../helpers/db.js';
+import seed from '../../../data/seed.js';
 import r_v0_users_get_id from '../../../../src/routes/v0/users_get_id.route.js';
 
 function new_req() {
@@ -24,7 +24,7 @@ function new_res() {
 let theuuid = '';
 describe('r_v0_users_get_id()', () => {
 	beforeAll(async () => {
-		await helper.reset();
+		await seed.reset();
 		const result = await sql.models.user.create({
 			username: 'user@example.com',
 			password: 'password',

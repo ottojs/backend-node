@@ -1,5 +1,5 @@
 // Modules
-import helper from '../../../helpers/db.js';
+import seed from '../../../data/seed.js';
 import r_v0_users_get from '../../../../src/routes/v0/users_get.route.js';
 
 function new_req() {
@@ -15,8 +15,8 @@ function new_res() {
 
 describe('r_v0_users_get()', () => {
 	beforeAll(async () => {
-		await helper.reset();
-		await helper.users();
+		await seed.reset();
+		await seed.users();
 	});
 	it('should set status to 200', (done) => {
 		const req = new_req();

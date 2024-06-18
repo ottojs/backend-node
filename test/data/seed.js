@@ -3,7 +3,14 @@ import argon2 from 'argon2';
 import sql from '../../src/sql/index.js';
 
 async function reset() {
-	const models = ['account', 'user', 'join_account_user', 'session'];
+	const models = [
+		'account',
+		'csp_report',
+		'join_account_user',
+		'request_log',
+		'session',
+		'user',
+	];
 	await Promise.all(
 		models.map(async function (key) {
 			await sql.models[key].destroy({
@@ -19,7 +26,7 @@ async function reset() {
 	);
 }
 
-async function seed_users() {
+async function users() {
 	// Accounts
 	await sql.models.account.create({
 		name: 'Admin Account',
@@ -28,7 +35,7 @@ async function seed_users() {
 		name: 'User Account',
 	});
 	// Users
-	const password_hash = await argon2.hash('admin');
+	const password_hash = await argon2.hash('testing');
 	await sql.models.user.create({
 		username: 'admin@example.com',
 		password: password_hash,
@@ -61,6 +68,7 @@ async function seed_users() {
 }
 
 export default {
-	reset: reset,
-	users: seed_users,
+	sql,
+	reset,
+	users,
 };

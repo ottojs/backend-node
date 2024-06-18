@@ -3,13 +3,13 @@ import { randomUUID } from 'node:crypto';
 import sql from '../../../src/sql/index.js';
 import config from '../../../src/lib/config.js';
 import cookie from '../../../src/lib/cookie.js';
-import helper from '../../helpers/db.js';
+import seed from '../../data/seed.js';
 import mw_load_session from '../../../src/mw/load_session.mw.js';
 
 describe('mw_load_session()', () => {
 	beforeAll(async () => {
-		await helper.reset();
-		await helper.users();
+		await seed.reset();
+		await seed.users();
 	});
 	describe('when no cookies', () => {
 		it('should set req.session to blank session', async () => {
