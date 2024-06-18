@@ -58,6 +58,13 @@ export default function ModelUserInit(sequelize) {
 						.max(60)
 						.optional()
 						.or(z.literal('')),
+					color: z
+						.string()
+						.trim()
+						.min(3)
+						.max(3)
+						.optional()
+						.or(z.literal('new')),
 				})
 				.safeParse(input);
 		}

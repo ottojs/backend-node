@@ -1,6 +1,8 @@
 // Modules
+import request from 'supertest';
 import argon2 from 'argon2';
 import sql from '../../src/sql/index.js';
+import app from '../../src/index.js';
 
 async function reset() {
 	const models = [
@@ -35,7 +37,7 @@ async function users() {
 		name: 'User Account',
 	});
 	// Users
-	const password_hash = await argon2.hash('testing');
+	const password_hash = await argon2.hash('testingpass');
 	await sql.models.user.create({
 		username: 'admin@example.com',
 		password: password_hash,
@@ -78,8 +80,26 @@ async function users() {
 	return users;
 }
 
+// Unfortunately, we need to go through the HTTP app for now
+// because our cookies are signed. There is likely a way to sign
+// values with the cookie secret but for now we'll do it this way
+// TODO: Sign cookie data so we can work directly with database
+async function login(email) {
+	const res = await request(app)
+		.post('/v0/sessions')
+		.set('Accept', 'application/json')
+		.set('Content-Type', 'application/json')
+		.send({
+			username: email,
+			password: 'testingpass',
+		});
+	// Use with: request.set('Cookie', cookies)
+	return res.headers['set-cookie'];
+}
+
 export default {
 	sql,
 	reset,
 	users,
+	login,
 };
