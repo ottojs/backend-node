@@ -7,6 +7,7 @@ import ModelAccount from './models/account.model.js';
 import ModelUser from './models/user.model.js';
 import ModelJoinAccountUser from './models/join_account_user.model.js';
 import ModelSession from './models/session.model.js';
+import ModelTask from './models/task.model.js';
 import debug from 'debug';
 const log = debug('app:sql');
 
@@ -89,6 +90,7 @@ async function initialize() {
 	models.user = ModelUser(sequelize, models);
 	models.join_account_user = ModelJoinAccountUser(sequelize, models);
 	models.session = ModelSession(sequelize, models);
+	models.task = ModelTask(sequelize, models);
 
 	// Glue the models together with associations
 	// Required to do the 2-way data binding
@@ -106,6 +108,10 @@ async function initialize() {
 	// User => Sessions
 	models.user.hasMany(models.session, { foreignKey: 'user_id' });
 	models.session.belongsTo(models.user, { foreignKey: 'user_id' });
+
+	// User => Tasks
+	models.user.hasMany(models.task, { foreignKey: 'user_id' });
+	models.task.belongsTo(models.user, { foreignKey: 'user_id' });
 
 	// Connect to Database
 	db = await connect(sequelize);
