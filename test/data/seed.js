@@ -11,6 +11,7 @@ async function reset() {
 		'join_account_user',
 		'request_log',
 		'session',
+		'task',
 		'user',
 	];
 	await Promise.all(
@@ -108,9 +109,42 @@ async function login(email) {
 	return res.headers['set-cookie'];
 }
 
+async function tasks() {
+	// Admin
+	await sql.models.task.create({
+		user_id: 1,
+		title: 'Admin Title 1',
+		description: 'Admin Description 1',
+		order: 1,
+		completed: false,
+	});
+	await sql.models.task.create({
+		user_id: 1,
+		title: 'Admin Title 2',
+		description: 'Admin Description 2',
+		order: 2,
+		completed: true,
+	});
+	// Owner
+	await sql.models.task.create({
+		user_id: 2,
+		title: 'Owner Title 1',
+		description: 'Owner Description 1',
+		order: 1,
+		completed: false,
+	});
+
+	// We return this for ease of accessing UUIDs, etc
+	const tasks = await sql.models.task.findAll({
+		order: [['id', 'ASC']],
+	});
+	return tasks;
+}
+
 export default {
 	sql,
 	reset,
 	users,
 	login,
+	tasks,
 };
