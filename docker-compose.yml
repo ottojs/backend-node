@@ -90,7 +90,7 @@ services:
   # https://hub.docker.com/r/dpage/pgadmin4/tags
   # https://www.pgadmin.org/docs/pgadmin4/latest/container_deployment.html
   pgadmin4:
-    image: dpage/pgadmin4:8.7
+    image: dpage/pgadmin4:8.8
     container_name: pgadmin4
     #user: root
     user: pgadmin
