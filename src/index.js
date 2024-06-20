@@ -29,6 +29,7 @@ import r_v0_sessions_get_id from './routes/v0/sessions_get_id.route.js';
 import r_v0_sessions_post from './routes/v0/sessions_post.route.js';
 import r_v0_sessions_delete from './routes/v0/sessions_delete.route.js';
 import r_v0_tasks_get from './routes/v0/tasks_get.route.js';
+import r_v0_tasks_post from './routes/v0/tasks_post.route.js';
 import r_404 from './routes/404.route.js';
 
 // Initialize Express
@@ -66,6 +67,7 @@ app.get('/v0/sessions/:uuid', [mw_require_login, r_v0_sessions_get_id]);
 app.post('/v0/sessions', r_v0_sessions_post);
 app.delete('/v0/sessions/:uuid', [mw_require_login, r_v0_sessions_delete]);
 app.get('/v0/tasks', [mw_require_login, r_v0_tasks_get]);
+app.post('/v0/tasks', [mw_require_login, r_v0_tasks_post]);
 app.all('*', r_404);
 
 // Error Handler
