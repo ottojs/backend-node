@@ -7,8 +7,8 @@ function valid_body() {
 	return {
 		name_first: 'First',
 		name_last: 'Last',
-		//picture: 'picture.jpg',
-		//color: 'new',
+		picture: null,
+		color: '#000000', // or 'new'
 	};
 }
 
@@ -70,7 +70,7 @@ describe('PATCH /v0/users/:uuid', () => {
 						username: 'owner@example.com',
 						name_first: 'FirstUpdate',
 						name_last: 'Last',
-						picture: '',
+						picture: null,
 					},
 				},
 			});
@@ -92,7 +92,7 @@ describe('PATCH /v0/users/:uuid', () => {
 						username: 'owner@example.com',
 						name_first: 'First',
 						name_last: 'LastUpdate',
-						picture: '',
+						picture: null,
 					},
 				},
 			});

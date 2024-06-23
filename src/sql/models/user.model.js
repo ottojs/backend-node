@@ -52,19 +52,9 @@ export default function ModelUserInit(sequelize) {
 					name_first: z.string().trim().min(1).max(40),
 					name_last: z.string().trim().min(1).max(40),
 					picture: z
-						.string()
-						.trim()
-						.min(1)
-						.max(60)
-						.optional()
-						.or(z.literal('')),
-					color: z
-						.string()
-						.trim()
-						.min(3)
-						.max(3)
-						.optional()
-						.or(z.literal('new')),
+						.union([z.string().trim().min(4).max(80), z.literal(null)])
+						.default(null),
+					color: z.union([z.string().trim().min(7).max(7), z.literal('new')]),
 				})
 				.safeParse(input);
 		}
