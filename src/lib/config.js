@@ -30,6 +30,11 @@ const CORS_ALLOWED_ORIGINS = env_default(
 	'http://localhost:3000'
 ).split(',');
 
+// Google Cloud Config
+const GCP_STORAGE_CONFIG = JSON.parse(env_default('GCP_STORAGE_CONFIG', '{}'));
+const GCP_BUCKET_NAME = env_default('GCP_BUCKET_NAME', 'example-bucket');
+const GCP_UPLOAD_EXPIRE_TIME = 5 * 60 * 1000; // 5 minutes in seconds
+
 // Register Code
 const REGISTER_CODE = '1234';
 
@@ -41,6 +46,10 @@ export default {
 	COOKIE_SECRET,
 	COOKIE_NAME_SESSION,
 	CORS_ALLOWED_ORIGINS,
+	// Google Cloud
+	GCP_STORAGE_CONFIG,
+	GCP_BUCKET_NAME,
+	GCP_UPLOAD_EXPIRE_TIME,
 	REGISTER_CODE,
 	// Calculated
 	IS_PRODUCTION,

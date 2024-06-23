@@ -6,3 +6,5 @@ export PORT="8080";
 export DEBUG="app:*";
 export SQL_URI="postgresql://localuser:localroot@127.0.0.1:5432/localdb?connect_timeout=10&sslmode=disable";
 export COOKIE_SECRET="cookie-secret";
+export GCP_BUCKET_NAME="cdn.example.com";
+export GCP_STORAGE_CONFIG='{"projectId":"example","keyFilename":"example.json"}';
