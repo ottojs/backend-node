@@ -33,6 +33,8 @@ describe('ModelUser', () => {
 			return {
 				name_first: 'First',
 				name_last: 'Last',
+				picture: null,
+				color: '#000000',
 			};
 		}
 		it('should return invalid when name_first is not provided', () => {

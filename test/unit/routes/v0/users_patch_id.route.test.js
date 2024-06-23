@@ -12,14 +12,15 @@ function new_req() {
 		body: {
 			name_first: 'First',
 			name_last: 'Last',
-			picture: '',
+			picture: null,
+			color: '#000000',
 		},
 		user: {
 			save: () => {},
 			json: () => {},
 			name_first: '',
 			name_last: '',
-			picture: '',
+			picture: null,
 		},
 	};
 }
@@ -154,7 +155,7 @@ describe('r_v0_users_patch_id()', () => {
 					user: {
 						name_first: 'UpFirst',
 						name_last: 'UpLast',
-						picture: '',
+						picture: null,
 						username: 'admin@example.com',
 					},
 				},
