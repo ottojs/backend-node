@@ -1,4 +1,5 @@
 // Modules
+import _ from 'lodash';
 import cors from 'cors';
 import config from '../lib/config.js';
 import debug from 'debug';
@@ -6,14 +7,27 @@ const log = debug('app:mw:cors');
 
 function corsCheck(origin, callback) {
 	//log('ORIGIN', origin);
-	if (!origin) {
-		//log('OK (NONE)');
-		callback(null, true);
-	} else if (config.CORS_ALLOWED_ORIGINS.indexOf(origin) !== -1) {
-		//log('OK (ORIGIN)');
+	let allowed = false;
+	if (_.isUndefined(origin)) {
+		// No Origin. Allowed
+		//log('OK NO ORIGIN');
+		allowed = true;
+	} else {
+		if (_.isString(origin) && origin.length > 0) {
+			config.CORS_ALLOWED_ORIGINS.map((o) => {
+				if (origin.startsWith(o)) {
+					//log('OK ORIGIN FOUND: ' + origin + ':' + o);
+					allowed = true;
+				}
+			});
+		}
+	}
+
+	if (allowed === true) {
+		//log('OK ORIGIN ALLOWED: ' + origin);
 		callback(null, true);
 	} else {
-		log('WARNING ORIGIN NOT ALLOWED:', origin);
+		log('WARNING ORIGIN NOT ALLOWED: ' + origin);
 		callback(new Error('Not allowed by CORS'));
 	}
 }
