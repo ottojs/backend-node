@@ -37,7 +37,7 @@ import r_404 from './routes/404.route.js';
 
 // Initialize Express
 const app = express();
-app.set('trust proxy', config.IS_PRODUCTION);
+app.set('trust proxy', config.IS_PRODUCTION ? 1 : false);
 
 // Special Routes
 app.get('/health', r_health);
