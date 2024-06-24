@@ -1,7 +1,7 @@
-function r_health(req, res, next) {
+function r_health(req, res) {
 	res.status(200);
 	res.json({ status: 'ok' });
-	return next();
+	// Do not call next, it will clutter logs
 }
 
 export default r_health;

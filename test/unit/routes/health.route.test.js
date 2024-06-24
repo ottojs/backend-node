@@ -2,7 +2,7 @@
 import r_health from '../../../src/routes/health.route.js';
 
 describe('r_health()', () => {
-	it('should set status to 200', (done) => {
+	it('should set status to 200', () => {
 		let status;
 		const res = {
 			status: (int) => {
@@ -10,12 +10,10 @@ describe('r_health()', () => {
 			},
 			json: () => {},
 		};
-		r_health({}, res, () => {
-			expect(status).toEqual(200);
-			done();
-		});
+		r_health({}, res);
+		expect(status).toEqual(200);
 	});
-	it('should set json to { status : "ok" }', (done) => {
+	it('should set json to { status : "ok" }', () => {
 		let json;
 		const res = {
 			status: () => {},
@@ -23,16 +21,7 @@ describe('r_health()', () => {
 				json = obj;
 			},
 		};
-		r_health({}, res, () => {
-			expect(json).toEqual({ status: 'ok' });
-			done();
-		});
-	});
-	it('should call next', (done) => {
-		const res = {
-			status: () => {},
-			json: () => {},
-		};
-		r_health({}, res, done);
+		r_health({}, res);
+		expect(json).toEqual({ status: 'ok' });
 	});
 });
