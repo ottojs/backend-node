@@ -61,10 +61,45 @@ function configure(config) {
 		sql.dialect = 'sqlite';
 		sql.storage = ':memory:';
 		return new Sequelize(sql);
-	} else {
+	} else if (config.SQL_URI !== 'GCP') {
 		// Normal SQL_URI
 		log('[SQL] USING GIVEN ENV VAR SQL_URI');
 		return new Sequelize(config.SQL_URI, sql);
+	} else {
+		// Google Cloud Specific
+		//
+		// We don't need this module when using the current method
+		// But it's here for your awareness if you want to switch to it
+		// import { Connector } from '@google-cloud/cloud-sql-connector';
+		//
+		// NOTE: Ensure your SQL instance has a "Public IP"
+		// Seems like a bad idea but that's what GCP recommends
+		// Later on, we'll have an alternative way to connect via VPN to VPC
+		// https://cloud.google.com/sql/docs/postgres/connect-run
+		// https://www.youtube.com/watch?v=cBrn5IM4mA8
+
+		// Adapt to Google Cloud
+		// https://cloud.google.com/sql/docs/postgres/connect-overview
+		log('[SQL] USING GCP CLOUD SQL');
+		if (config.SQL_DATABASE && config.SQL_DATABASE !== '') {
+			sql.host = '/cloudsql/' + config.SQL_CONNNAME;
+			sql.dialectOptions = {
+				socketPath: '/cloudsql/' + config.SQL_CONNNAME,
+			};
+			sql.database = config.SQL_DATABASE;
+			// Disable TLS/SSL because we are using sockets
+			sql.ssl = false;
+			//sql.dialectOptions.ssl.require = false;
+		}
+		if (config.SQL_USERNAME && config.SQL_USERNAME !== '') {
+			sql.username = config.SQL_USERNAME;
+		}
+		if (config.SQL_PASSWORD && config.SQL_PASSWORD !== '') {
+			sql.password = config.SQL_PASSWORD;
+		}
+		sql.dialect = 'postgres';
+		sql.port = 5432;
+		return new Sequelize(sql);
 	}
 }
 

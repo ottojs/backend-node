@@ -63,6 +63,55 @@ describe('SQL', () => {
 				});
 			});
 		});
+		describe('when only using GCP and all parameters', () => {
+			it('should return Sequelize object with config', () => {
+				const result = configure({
+					SQL_URI: 'GCP',
+					SQL_DATABASE: 'gcpdb',
+					SQL_CONNNAME: 'cloudsqlinstance',
+					SQL_USERNAME: 'gcpuser',
+					SQL_PASSWORD: 'gcppass',
+				});
+				expect(result.config).toMatchObject({
+					database: 'gcpdb',
+					username: 'gcpuser',
+					password: 'gcppass',
+					host: '/cloudsql/cloudsqlinstance',
+					port: 5432,
+					ssl: false,
+					pool: { max: 10, min: 1, acquire: 30000, idle: 10000 },
+					dialectOptions: {
+						// Not necessary when using socket
+						// ssl: {
+						// 	require: true,
+						// 	rejectUnauthorized: true,
+						// },
+						socketPath: '/cloudsql/cloudsqlinstance',
+					},
+				});
+			});
+		});
+		describe('when only using GCP with partial parameters', () => {
+			it('should return Sequelize object with config', () => {
+				const result = configure({
+					SQL_URI: 'GCP',
+				});
+				expect(result.config).toMatchObject({
+					database: undefined,
+					username: undefined,
+					password: null,
+					host: 'localhost',
+					port: 5432,
+					ssl: true,
+					pool: { max: 10, min: 1, acquire: 30000, idle: 10000 },
+					dialectOptions: {
+						ssl: {
+							rejectUnauthorized: true,
+						},
+					},
+				});
+			});
+		});
 	});
 	describe('connect()', () => {
 		describe('when given incorrect credentials', () => {
