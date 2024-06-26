@@ -41,6 +41,9 @@ app.set('trust proxy', config.IS_PRODUCTION ? 1 : false);
 
 // Special Routes
 app.get('/health', r_health);
+app.get('/favicon.ico', function (req, res) {
+	return res.status(204).send();
+});
 
 // Main Middleware
 app.use(mw_request_early);
