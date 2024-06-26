@@ -36,7 +36,7 @@ const GCP_BUCKET_NAME = env_default('GCP_BUCKET_NAME', 'example-bucket');
 const GCP_UPLOAD_EXPIRE_TIME = 5 * 60 * 1000; // 5 minutes in seconds
 
 // Register Code
-const REGISTER_CODE = '1234';
+const REGISTER_CODE = env_default('REGISTER_CODE', '1234');
 
 export default {
 	NODE_ENV,
