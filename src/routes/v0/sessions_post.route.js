@@ -45,7 +45,8 @@ async function r_v0_sessions_post(req, res, next) {
 	res.cookie(
 		config.COOKIE_NAME_SESSION,
 		created_session.uuid,
-		cookie.settings(8) // 8 Hours
+		// TODO: Move to Config
+		cookie.settings(3 * 24) // 3 Days in Hours
 	);
 
 	// Response
