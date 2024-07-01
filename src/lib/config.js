@@ -27,7 +27,7 @@ const COOKIE_NAME_SESSION = 'sid';
 // CORS
 const CORS_ALLOWED_ORIGINS = env_default(
 	'CORS_ALLOWED_ORIGINS',
-	'http://localhost:3000'
+	['http://localhost:3000', 'http://localhost:8081'].join(',')
 ).split(',');
 
 // Google Cloud Config
