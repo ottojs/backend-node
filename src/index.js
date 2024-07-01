@@ -37,6 +37,7 @@ import r_404 from './routes/404.route.js';
 
 // Initialize Express
 const app = express();
+app.use(mw_helmet);
 app.set('trust proxy', config.IS_PRODUCTION ? 1 : false);
 
 // Special Routes
@@ -47,7 +48,6 @@ app.get('/favicon.ico', function (req, res) {
 
 // Main Middleware
 app.use(mw_request_early);
-app.use(mw_helmet);
 app.use(mw_rate_limit);
 const body_content_types = ['application/json', 'application/csp-report'];
 app.use(body_parser.json({ type: body_content_types }));
