@@ -5,7 +5,8 @@ import config from '../../lib/config.js';
 import storage from '../../lib/gcp_storage.js';
 
 // https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types/Common_types
-// application/octet-stream
+// https://www.iana.org/assignments/media-types/media-types.xhtml
+// Default is usually application/octet-stream
 const allowed_uploads = [
 	{
 		mime: 'audio/webm',
@@ -26,6 +27,13 @@ const allowed_uploads = [
 		mime: 'image/webp',
 		type: 'image',
 		extensions: ['webp'],
+	},
+	// Android Audio
+	{
+		mime: 'audio/mp4',
+		type: 'audio',
+		// 'mp4' is the standard extension, but it is not specific enough for current code
+		extensions: ['m4a'],
 	},
 ];
 
