@@ -107,7 +107,7 @@ describe('POST /v0/sessions', () => {
 		it('should set cookie', () => {
 			expect(res.headers['set-cookie']).toHaveLength(1);
 			const c = res.headers['set-cookie'][0];
-			expect(c).toMatch(/Max-Age=28800;/);
+			expect(c).toMatch(/Max-Age=259200;/);
 			expect(c).toMatch(/Path=\/;/);
 			expect(c).toMatch(/HttpOnly;/);
 			expect(c).toMatch(/SameSite=Strict/);

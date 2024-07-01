@@ -77,7 +77,7 @@ describe('r_v0_sessions_post()', () => {
 				name: 'sid',
 				params: {
 					httpOnly: true,
-					maxAge: 28800000,
+					maxAge: 259200000,
 					path: '/',
 					sameSite: 'Strict',
 					secure: false,
