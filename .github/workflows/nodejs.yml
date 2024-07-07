@@ -1,5 +1,5 @@
 ---
-name: Deploy Node.js project to Azure Function App
+name: Run Tests
 
 # All Branches (including PR)
 on: [push]
