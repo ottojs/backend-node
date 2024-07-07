@@ -12,3 +12,5 @@ $env:EMAIL_PROVIDER = "preview";
 $env:EMAIL_SENDGRID_API_KEY = "disabled";
 $env:EMAIL_MAILGUN_API_KEY = "disabled";
 $env:EMAIL_POSTMARK_API_KEY = "disabled";
+$env:STRIPE_SECRET_KEY = "disabled";
+$env:STRIPE_ONETIME_PRICE_ID = "price_RANDOMID";

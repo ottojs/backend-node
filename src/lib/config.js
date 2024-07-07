@@ -82,6 +82,11 @@ const GCP_STORAGE_CONFIG = JSON.parse(env_default('GCP_STORAGE_CONFIG', '{}'));
 const GCP_BUCKET_NAME = env_default('GCP_BUCKET_NAME', 'example-bucket');
 const GCP_UPLOAD_EXPIRE_TIME = 5 * 60 * 1000; // 5 minutes in seconds
 
+// Stripe
+const STRIPE_SECRET_KEY = env_default('STRIPE_SECRET_KEY', 'disabled');
+const STRIPE_API_VERSION = env_default('STRIPE_API_VERSION', '2024-06-20');
+const STRIPE_ONETIME_PRICE_ID = env_default('STRIPE_ONETIME_PRICE_ID', 'disabled');
+
 // Register Code
 const REGISTER_CODE = env_default('REGISTER_CODE', '1234');
 
@@ -111,6 +116,10 @@ export default {
 	GCP_STORAGE_CONFIG,
 	GCP_BUCKET_NAME,
 	GCP_UPLOAD_EXPIRE_TIME,
+	// Stripe
+	STRIPE_SECRET_KEY,
+	STRIPE_API_VERSION,
+	STRIPE_ONETIME_PRICE_ID,
 	// App
 	API_DOMAIN,
 	API_URI,

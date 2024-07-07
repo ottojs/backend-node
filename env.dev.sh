@@ -12,3 +12,5 @@ export EMAIL_PROVIDER="preview";
 export EMAIL_SENDGRID_API_KEY="disabled";
 export EMAIL_MAILGUN_API_KEY="disabled";
 export EMAIL_POSTMARK_API_KEY="disabled";
+export STRIPE_SECRET_KEY="disabled";
+export STRIPE_ONETIME_PRICE_ID="price_RANDOMID";
