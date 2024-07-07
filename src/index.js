@@ -34,6 +34,8 @@ import r_v0_tasks_patch_id from './routes/v0/tasks_patch_id.route.js';
 import r_v0_tasks_delete_id from './routes/v0/tasks_delete_id.route.js';
 import r_v0_upload_url_post from './routes/v0/upload_url_post.route.js';
 import r_v0_payments_post from './routes/v0/payments_post.route.js';
+import r_v0_analytics_sessions_post from './routes/v0/analytics_sessions_post.route.js';
+import r_v0_analytics_events_post from './routes/v0/analytics_events_post.route.js';
 import r_404 from './routes/404.route.js';
 
 // Initialize Express
@@ -79,6 +81,8 @@ app.patch('/v0/tasks/:uuid', [mw_require_login, r_v0_tasks_patch_id]);
 app.delete('/v0/tasks/:uuid', [mw_require_login, r_v0_tasks_delete_id]);
 app.post('/v0/upload_url', [mw_require_login, r_v0_upload_url_post]);
 app.post('/v0/payments', [r_v0_payments_post]);
+app.post('/v0/analytics/sessions', [r_v0_analytics_sessions_post]);
+app.post('/v0/analytics/events', [r_v0_analytics_events_post]);
 app.all('*', r_404);
 
 // Error Handler

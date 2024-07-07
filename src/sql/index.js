@@ -8,6 +8,8 @@ import ModelUser from './models/user.model.js';
 import ModelJoinAccountUser from './models/join_account_user.model.js';
 import ModelSession from './models/session.model.js';
 import ModelTask from './models/task.model.js';
+import ModelAnalyticsSession from './models/analytics_session.model.js';
+import ModelAnalyticsEvent from './models/analytics_event.model.js';
 import debug from 'debug';
 const log = debug('app:sql');
 
@@ -126,6 +128,8 @@ async function initialize() {
 	models.join_account_user = ModelJoinAccountUser(sequelize, models);
 	models.session = ModelSession(sequelize, models);
 	models.task = ModelTask(sequelize, models);
+	models.analytics_session = ModelAnalyticsSession(sequelize, models);
+	models.analytics_event = ModelAnalyticsEvent(sequelize, models);
 
 	// Glue the models together with associations
 	// Required to do the 2-way data binding
