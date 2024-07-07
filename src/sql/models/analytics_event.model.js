@@ -77,6 +77,9 @@ export default function ModelAnalyticsEventInit(sequelize) {
 						uuid: randomUUID(),
 						data: '',
 					});
+					if (_.isObject(obj.data)) {
+						obj.data = JSON.stringify(obj.data);
+					}
 				},
 			},
 			sequelize,

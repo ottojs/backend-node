@@ -31,7 +31,7 @@ async function r_v0_analytics_events_post(req, res, next) {
 		session_id: req.body.session_id,
 		name: req.body.name,
 		ip_address: req.appdata.ip,
-		data: JSON.stringify(req.body.data),
+		data: req.body.data,
 	});
 
 	// Response
