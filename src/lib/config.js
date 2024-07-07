@@ -85,6 +85,12 @@ const GCP_UPLOAD_EXPIRE_TIME = 5 * 60 * 1000; // 5 minutes in seconds
 // Register Code
 const REGISTER_CODE = env_default('REGISTER_CODE', '1234');
 
+// App Data
+const API_DOMAIN = env_default('API_DOMAIN', 'localhost:8080');
+const API_URI = env_default('API_URI', `http://${API_DOMAIN}`);
+const APP_DOMAIN = env_default('APP_DOMAIN', 'localhost:3111');
+const APP_URI = env_default('APP_URI', `http://${APP_DOMAIN}`);
+
 export default {
 	NODE_ENV,
 	LISTEN,
@@ -105,6 +111,11 @@ export default {
 	GCP_STORAGE_CONFIG,
 	GCP_BUCKET_NAME,
 	GCP_UPLOAD_EXPIRE_TIME,
+	// App
+	API_DOMAIN,
+	API_URI,
+	APP_DOMAIN,
+	APP_URI,
 	REGISTER_CODE,
 	// Calculated
 	IS_PRODUCTION,
