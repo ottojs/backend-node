@@ -40,6 +40,15 @@ function mw_error_handler(error, req, res, next) {
 				path: req.path,
 			},
 		});
+	} else if (error.message === 'not_implemented') {
+		res.status(501);
+		res.json({
+			status: 'error',
+			error: {
+				code: 501,
+				message: 'not implemented',
+			},
+		});
 	} else {
 		log('[ERROR HANDLER UNEXPECTED] 500', error);
 		res.status(500);

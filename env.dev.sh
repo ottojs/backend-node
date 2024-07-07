@@ -14,3 +14,4 @@ export EMAIL_MAILGUN_API_KEY="disabled";
 export EMAIL_POSTMARK_API_KEY="disabled";
 export STRIPE_SECRET_KEY="disabled";
 export STRIPE_ONETIME_PRICE_ID="price_RANDOMID";
+export STRIPE_SUBSCRIPTION_PRICE_ID="price_RANDOMID";
