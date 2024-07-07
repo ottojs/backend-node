@@ -5,6 +5,7 @@ import _ from 'lodash';
 import Email from 'email-templates';
 import previewEmail from 'preview-email';
 import config from '../lib/config.js';
+import mailgun from './providers/mailgun.js';
 import sendgrid from './providers/sendgrid.js';
 import debug from 'debug';
 const log = debug('app:email');
@@ -84,7 +85,9 @@ async function send(template_name, template_data) {
 		})
 	);
 	let result;
-	if (provider === 'sendgrid') {
+	if (provider === 'mailgun') {
+		result = await mailgun.send(message);
+	} else if (provider === 'sendgrid') {
 		message.from = process.env.SENDGRID_FROM;
 		result = await sendgrid.send(message);
 		if (!_.isArray(result) && result.length !== 1) {

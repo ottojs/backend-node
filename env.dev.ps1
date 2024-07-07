@@ -10,3 +10,4 @@ $env:GCP_BUCKET_NAME = "cdn.example.com";
 $env:GCP_STORAGE_CONFIG = '{"projectId":"example","keyFilename":"example.json"}';
 $env:EMAIL_PROVIDER = "preview";
 $env:EMAIL_SENDGRID_API_KEY = "disabled";
+$env:EMAIL_MAILGUN_API_KEY = "disabled";

@@ -33,6 +33,20 @@ const CORS_ALLOWED_ORIGINS = env_default(
 // Email - General
 const EMAIL_PROVIDER = env_default('EMAIL_PROVIDER', 'preview');
 
+// Email - Mailgun
+const EMAIL_MAILGUN_API_KEY = env_default('EMAIL_MAILGUN_API_KEY', 'disabled');
+let mailgun = 'disabled';
+if (EMAIL_MAILGUN_API_KEY !== 'disabled') {
+	mailgun = {
+		// https://api.eu.mailgun.net
+		api_endpoint: 'https://api.mailgun.net',
+		domain: 'mailgun.example.com',
+		from_name: 'Mailgun App',
+		from_email: 'alerts@mailgun.example.com',
+		reply_to: 'help@example.com',
+	};
+}
+
 // Email - SendGrid
 const EMAIL_SENDGRID_API_KEY = env_default(
 	'EMAIL_SENDGRID_API_KEY',
@@ -65,7 +79,9 @@ export default {
 	CORS_ALLOWED_ORIGINS,
 	// Email
 	EMAIL_PROVIDER,
+	EMAIL_MAILGUN_API_KEY,
 	EMAIL_SENDGRID_API_KEY,
+	mailgun,
 	sendgrid,
 	// Google Cloud
 	GCP_STORAGE_CONFIG,
