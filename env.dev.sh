@@ -11,3 +11,4 @@ export GCP_STORAGE_CONFIG='{"projectId":"example","keyFilename":"example.json"}'
 export EMAIL_PROVIDER="preview";
 export EMAIL_SENDGRID_API_KEY="disabled";
 export EMAIL_MAILGUN_API_KEY="disabled";
+export EMAIL_POSTMARK_API_KEY="disabled";

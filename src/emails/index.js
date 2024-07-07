@@ -6,10 +6,15 @@ import Email from 'email-templates';
 import previewEmail from 'preview-email';
 import config from '../lib/config.js';
 import mailgun from './providers/mailgun.js';
+import postmark from './providers/postmark.js';
 import sendgrid from './providers/sendgrid.js';
 import debug from 'debug';
 const log = debug('app:email');
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
+
+// Note: For templates, if you have common chunks, like a header or footer
+//       You can use the following code to include a partial file
+//       <%- include('../partials/head'); %>
 
 const email = new Email({
 	// message: {
@@ -87,6 +92,9 @@ async function send(template_name, template_data) {
 	let result;
 	if (provider === 'mailgun') {
 		result = await mailgun.send(message);
+	} else if (provider === 'postmark') {
+		result = await postmark.send(message);
+		result.id = result.MessageID;
 	} else if (provider === 'sendgrid') {
 		message.from = process.env.SENDGRID_FROM;
 		result = await sendgrid.send(message);

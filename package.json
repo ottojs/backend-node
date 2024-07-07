@@ -60,6 +60,7 @@
 		"mailgun.js": "10.2.1",
 		"pg": "8.12.0",
 		"pg-hstore": "2.3.4",
+		"postmark": "4.0.4",
 		"sequelize": "6.37.3",
 		"sequelize-cli": "6.6.2",
 		"ua-parser-js": "1.0.38",

@@ -47,6 +47,22 @@ if (EMAIL_MAILGUN_API_KEY !== 'disabled') {
 	};
 }
 
+// Email - Postmark
+const EMAIL_POSTMARK_API_KEY = env_default(
+	'EMAIL_POSTMARK_API_KEY',
+	'disabled'
+);
+let postmark = 'disabled';
+if (EMAIL_POSTMARK_API_KEY !== 'disabled') {
+	postmark = {
+		stream: 'outbound',
+		domain: 'postmark.example.com',
+		from_name: 'Postmark App',
+		from_email: 'alerts@postmark.example.com',
+		reply_to: 'help@example.com',
+	};
+}
+
 // Email - SendGrid
 const EMAIL_SENDGRID_API_KEY = env_default(
 	'EMAIL_SENDGRID_API_KEY',
@@ -80,8 +96,10 @@ export default {
 	// Email
 	EMAIL_PROVIDER,
 	EMAIL_MAILGUN_API_KEY,
+	EMAIL_POSTMARK_API_KEY,
 	EMAIL_SENDGRID_API_KEY,
 	mailgun,
+	postmark,
 	sendgrid,
 	// Google Cloud
 	GCP_STORAGE_CONFIG,
