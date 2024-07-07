@@ -30,6 +30,9 @@ const CORS_ALLOWED_ORIGINS = env_default(
 	['http://localhost:3000', 'http://localhost:8081'].join(',')
 ).split(',');
 
+// Email
+const EMAIL_PROVIDER = env_default('EMAIL_PROVIDER', 'preview');
+
 // Google Cloud Config
 const GCP_STORAGE_CONFIG = JSON.parse(env_default('GCP_STORAGE_CONFIG', '{}'));
 const GCP_BUCKET_NAME = env_default('GCP_BUCKET_NAME', 'example-bucket');
@@ -46,6 +49,8 @@ export default {
 	COOKIE_SECRET,
 	COOKIE_NAME_SESSION,
 	CORS_ALLOWED_ORIGINS,
+	// Email
+	EMAIL_PROVIDER,
 	// Google Cloud
 	GCP_STORAGE_CONFIG,
 	GCP_BUCKET_NAME,
