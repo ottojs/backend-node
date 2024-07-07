@@ -5,6 +5,7 @@ import _ from 'lodash';
 import Email from 'email-templates';
 import previewEmail from 'preview-email';
 import config from '../lib/config.js';
+import sendgrid from './providers/sendgrid.js';
 import debug from 'debug';
 const log = debug('app:email');
 const __dirname = url.fileURLToPath(new URL('.', import.meta.url));
@@ -82,10 +83,23 @@ async function send(template_name, template_data) {
 			provider,
 		})
 	);
-	let result = {
-		id: 'preview-' + Date.now(),
-	};
-	previewEmail(message);
+	let result;
+	if (provider === 'sendgrid') {
+		message.from = process.env.SENDGRID_FROM;
+		result = await sendgrid.send(message);
+		if (!_.isArray(result) && result.length !== 1) {
+			// Error
+			// TODO: Not a fan of try/catch, so likely will handle with a callback
+			throw new Error('email');
+		}
+		result = result[0];
+		result.id = result.headers['x-message-id'];
+	} else {
+		result = {
+			id: 'preview-' + Date.now(),
+		};
+		previewEmail(message);
+	}
 	log(`EMAIL SENT: ${provider} ${result.id}`);
 }
 

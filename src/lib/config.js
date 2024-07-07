@@ -30,8 +30,22 @@ const CORS_ALLOWED_ORIGINS = env_default(
 	['http://localhost:3000', 'http://localhost:8081'].join(',')
 ).split(',');
 
-// Email
+// Email - General
 const EMAIL_PROVIDER = env_default('EMAIL_PROVIDER', 'preview');
+
+// Email - SendGrid
+const EMAIL_SENDGRID_API_KEY = env_default(
+	'EMAIL_SENDGRID_API_KEY',
+	'disabled'
+);
+let sendgrid = 'disabled';
+if (EMAIL_SENDGRID_API_KEY !== 'disabled') {
+	sendgrid = {
+		from_name: 'SendGrid App',
+		from_email: 'alert@sendgrid.example.com',
+		reply_to: 'help@example.com',
+	};
+}
 
 // Google Cloud Config
 const GCP_STORAGE_CONFIG = JSON.parse(env_default('GCP_STORAGE_CONFIG', '{}'));
@@ -51,6 +65,8 @@ export default {
 	CORS_ALLOWED_ORIGINS,
 	// Email
 	EMAIL_PROVIDER,
+	EMAIL_SENDGRID_API_KEY,
+	sendgrid,
 	// Google Cloud
 	GCP_STORAGE_CONFIG,
 	GCP_BUCKET_NAME,

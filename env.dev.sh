@@ -8,3 +8,5 @@ export SQL_URI="postgresql://localuser:localroot@127.0.0.1:5432/localdb?connect_
 export COOKIE_SECRET="cookie-secret";
 export GCP_BUCKET_NAME="cdn.example.com";
 export GCP_STORAGE_CONFIG='{"projectId":"example","keyFilename":"example.json"}';
+export EMAIL_PROVIDER="preview";
+export EMAIL_SENDGRID_API_KEY="disabled";

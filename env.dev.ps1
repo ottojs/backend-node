@@ -8,3 +8,5 @@ $env:SQL_URI = "postgresql://localuser:localroot@127.0.0.1:5432/localdb?connect_
 $env:COOKIE_SECRET = "cookie-secret";
 $env:GCP_BUCKET_NAME = "cdn.example.com";
 $env:GCP_STORAGE_CONFIG = '{"projectId":"example","keyFilename":"example.json"}';
+$env:EMAIL_PROVIDER = "preview";
+$env:EMAIL_SENDGRID_API_KEY = "disabled";
