@@ -55,6 +55,7 @@ app.post('/v0/upload_url', [mw.require_login, r_v0.upload_url_post]);
 app.post('/v0/payments', [r_v0.payments_post]);
 app.post('/v0/analytics/sessions', [r_v0.analytics_sessions_post]);
 app.post('/v0/analytics/events', [r_v0.analytics_events_post]);
+app.post('/v0/emails', [r_v0.emails_post]);
 app.all('*', r_404);
 
 // Error Handler
