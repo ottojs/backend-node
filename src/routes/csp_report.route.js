@@ -28,15 +28,15 @@ export default r_csp_report;
 // Example Report Body (Chrome)
 // {
 //   'csp-report': {
-//     'document-uri': 'http://localhost:3000/',
-//     referrer: 'http://localhost:3000/',
+//     'document-uri': 'http://localhost:3111/',
+//     referrer: 'http://localhost:3111/',
 //     'violated-directive': 'script-src-elem',
 //     'effective-directive': 'script-src-elem',
 //     'original-policy': "default-src 'none';script-src 'self';style-src 'none';img-src 'self';connect-src 'self' http://localhost:8080;font-src 'none';object-src 'none';media-src 'none';frame-src 'none';report-uri http://localhost:8080/csp-report;form-action 'self';frame-ancestors 'none';base-uri 'self';manifest-src 'self';script-src-attr 'none';upgrade-insecure-requests",
 //     disposition: 'enforce',
 //     'blocked-uri': 'inline',
 //     'line-number': 4,
-//     'source-file': 'http://localhost:3000/',
+//     'source-file': 'http://localhost:3111/',
 //     'status-code': 200,
 //     'script-sample': ''
 //   }

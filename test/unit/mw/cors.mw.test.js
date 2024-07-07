@@ -16,13 +16,13 @@ describe('CORS corsCheck()', () => {
 		});
 	});
 	it('should allow listed origin (exact match)', () => {
-		corsCheck('http://localhost:3000', (err, allow) => {
+		corsCheck('http://localhost:3111', (err, allow) => {
 			expect(err).toBe(null);
 			expect(allow).toBe(true);
 		});
 	});
 	it('should allow listed origin (prefix match)', () => {
-		corsCheck('http://localhost:3000/', (err, allow) => {
+		corsCheck('http://localhost:3111/', (err, allow) => {
 			expect(err).toBe(null);
 			expect(allow).toBe(true);
 		});
