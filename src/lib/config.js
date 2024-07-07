@@ -37,14 +37,14 @@ const EMAIL_PROVIDER = env_default('EMAIL_PROVIDER', 'preview');
 const EMAIL_MAILGUN_API_KEY = env_default('EMAIL_MAILGUN_API_KEY', 'disabled');
 let mailgun = 'disabled';
 if (EMAIL_MAILGUN_API_KEY !== 'disabled') {
-	mailgun = {
-		// https://api.eu.mailgun.net
-		api_endpoint: 'https://api.mailgun.net',
-		domain: 'mailgun.example.com',
-		from_name: 'Mailgun App',
-		from_email: 'alerts@mailgun.example.com',
-		reply_to: 'help@example.com',
-	};
+	// Consider using this endpoint for EU-based customers
+	// https://api.eu.mailgun.net
+	mailgun = JSON.parse(
+		env_default(
+			'EMAIL_MAILGUN_CONFIG',
+			'{"api_endpoint":"https://api.mailgun.net","domain":"mailgun.example.com","from_name":"Mailgun App","from_email":"help@example.com","reply_to":"help@example.com"}'
+		)
+	);
 }
 
 // Email - Postmark
@@ -54,13 +54,12 @@ const EMAIL_POSTMARK_API_KEY = env_default(
 );
 let postmark = 'disabled';
 if (EMAIL_POSTMARK_API_KEY !== 'disabled') {
-	postmark = {
-		stream: 'outbound',
-		domain: 'postmark.example.com',
-		from_name: 'Postmark App',
-		from_email: 'alerts@postmark.example.com',
-		reply_to: 'help@example.com',
-	};
+	postmark = JSON.parse(
+		env_default(
+			'EMAIL_POSTMARK_CONFIG',
+			'{"stream":"outbound","domain":"postmark.example.com","from_name":"Postmark App","from_email":"help@example.com","reply_to":"help@example.com"}'
+		)
+	);
 }
 
 // Email - SendGrid
@@ -70,11 +69,12 @@ const EMAIL_SENDGRID_API_KEY = env_default(
 );
 let sendgrid = 'disabled';
 if (EMAIL_SENDGRID_API_KEY !== 'disabled') {
-	sendgrid = {
-		from_name: 'SendGrid App',
-		from_email: 'alert@sendgrid.example.com',
-		reply_to: 'help@example.com',
-	};
+	sendgrid = JSON.parse(
+		env_default(
+			'EMAIL_SENDGRID_CONFIG',
+			'{"from_name":"SendGrid App","from_email":"help@example.com","reply_to":"help@example.com"}'
+		)
+	);
 }
 
 // Google Cloud Config
