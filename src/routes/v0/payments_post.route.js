@@ -18,8 +18,6 @@ const req_body_schema = z.object({
 	type: z.enum(['one-time', 'subscription']),
 	path_success: z.string().trim().toLowerCase().min(1).max(50),
 	path_cancel: z.string().trim().toLowerCase().min(1).max(50),
-	// Optional
-	email: z.string().trim().email().optional(),
 });
 
 // https://docs.stripe.com/checkout/quickstart
@@ -29,6 +27,23 @@ async function r_v0_payments_post(req, res, next) {
 	const check = req_body_schema.safeParse(req.body);
 	if (check.success === false) {
 		return next(new Error('bad_request'));
+	}
+
+	// Check for Session
+	const existing_session = await sql.models.analytics_session.findOne({
+		where: {
+			uuid: req.body.session_id,
+		},
+	});
+	if (existing_session === null) {
+		return next(new Error('bad_request'));
+	}
+
+	// Check if Session has an email
+	let email;
+	const session_data = JSON.parse(existing_session.data);
+	if (session_data.email) {
+		email = session_data.email;
 	}
 
 	// Calculate Mode and Price
@@ -68,7 +83,7 @@ async function r_v0_payments_post(req, res, next) {
 		cancel_url: config.APP_URI + req.body.path_cancel,
 		automatic_tax: { enabled: true },
 		// Set this if you want to pre-fill customer email
-		customer_email: req.body.email ? req.body.email : undefined,
+		customer_email: email,
 	});
 
 	// Save Checkout Session ID
