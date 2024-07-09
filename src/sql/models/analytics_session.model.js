@@ -50,7 +50,7 @@ export default function ModelAnalyticsSessionInit(sequelize) {
 				beforeValidate: (obj) => {
 					_.defaults(obj, {
 						uuid: randomUUID(),
-						data: '',
+						data: '{}',
 					});
 				},
 			},

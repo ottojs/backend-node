@@ -75,7 +75,7 @@ export default function ModelAnalyticsEventInit(sequelize) {
 				beforeValidate: (obj) => {
 					_.defaults(obj, {
 						uuid: randomUUID(),
-						data: '',
+						data: '{}',
 					});
 					if (_.isObject(obj.data)) {
 						obj.data = JSON.stringify(obj.data);

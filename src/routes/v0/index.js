@@ -2,6 +2,7 @@
 import accounts_get from './accounts_get.route.js';
 import accounts_patch_id from './accounts_patch_id.route.js';
 import analytics_events_post from './analytics_events_post.route.js';
+import analytics_sessions_patch_id from './analytics_sessions_patch_id.route.js';
 import analytics_sessions_post from './analytics_sessions_post.route.js';
 import emails_post from './emails_post.route.js';
 import payments_post from './payments_post.route.js';
@@ -22,6 +23,7 @@ export default {
 	accounts_get,
 	accounts_patch_id,
 	analytics_events_post,
+	analytics_sessions_patch_id,
 	analytics_sessions_post,
 	emails_post,
 	payments_post,
