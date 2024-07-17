@@ -21,7 +21,7 @@
 		"prettier:fix": "prettier --write ."
 	},
 	"engines": {
-		"node": ">=20.15.0",
+		"node": ">=20.15.1",
 		"npm": ">=10.7.0"
 	},
 	"jest": {
