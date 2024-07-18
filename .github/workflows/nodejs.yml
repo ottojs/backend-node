@@ -2,7 +2,7 @@
 name: Run Tests
 
 # All Branches (including PR)
-on: [push]
+on: [push, workflow_dispatch]
 
 # Single Branch
 # on:
