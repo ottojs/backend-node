@@ -12,28 +12,37 @@ import r_404 from './routes/404.route.js';
 
 // Initialize Express
 const app = express();
-app.use(mw.helmet);
 app.set('trust proxy', config.IS_PRODUCTION ? 1 : false);
 
+// Protections
+app.use(mw.helmet);
+app.use(mw.rate_limit);
+
+// Initialize Request
+app.use(mw.request_start);
+
 // Special Routes
+// No Middleware
 app.get('/health', r_health);
 app.get('/favicon.ico', function (req, res) {
 	return res.status(204).send();
 });
 
 // Main Middleware
-app.use(mw.request_early);
-app.use(mw.rate_limit);
 const body_content_types = ['application/json', 'application/csp-report'];
 app.use(body_parser.json({ type: body_content_types }));
 app.use(cookie_parser(config.COOKIE_SECRET));
 app.use(mw.cors);
-app.use(mw.request_start);
 app.use(mw.load_browser);
 app.use(mw.load_referrer);
 app.use(mw.load_utm);
 app.use(mw.load_session);
 app.use(mw.load_user);
+app.use(function (req, res, next) {
+	// Mark as heading to routes
+	req.appdata.time_routes = Date.now();
+	return next();
+});
 
 // Attach Routes
 app.get('/', r_root);

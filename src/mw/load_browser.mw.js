@@ -32,12 +32,20 @@ function mw_load_browser(req, res, next) {
 		// 	device: { vendor: undefined, model: undefined, type: undefined },
 		// 	cpu: { architecture: 'amd64' }
 		// }
-		req.appdata.ua.browser_name = ua.browser.name;
-		req.appdata.ua.browser_version = ua.browser.version;
-		req.appdata.ua.device_name = ua.device.model;
-		req.appdata.ua.os_name = ua.os.name;
-		req.appdata.ua.os_version = ua.os.version;
-		req.appdata.ua.cpu_arch = ua.cpu.architecture;
+		if (ua.browser) {
+			req.appdata.ua.browser_name = ua.browser.name;
+			req.appdata.ua.browser_version = ua.browser.version;
+		}
+		if (ua.device) {
+			req.appdata.ua.device_name = ua.device.model;
+		}
+		if (ua.os) {
+			req.appdata.ua.os_name = ua.os.name;
+			req.appdata.ua.os_version = ua.os.version;
+		}
+		if (ua.cpu) {
+			req.appdata.ua.cpu_arch = ua.cpu.architecture;
+		}
 	}
 
 	log('end');

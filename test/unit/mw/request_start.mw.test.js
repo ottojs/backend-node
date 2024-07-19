@@ -15,6 +15,16 @@ function new_req() {
 }
 
 describe('mw_request_start()', () => {
+	it('should set req.appdata.time_start to current timestamp', (done) => {
+		const req = {};
+		mw_request_start(req, {}, () => {
+			expect(req).toHaveProperty('appdata');
+			expect(req.appdata).toHaveProperty('time_start');
+			expect(req.appdata.time_start).toBeGreaterThan(Date.now() - 5000);
+			expect(req.appdata.time_start).toBeLessThan(Date.now() + 5000);
+			done();
+		});
+	});
 	it('should set req.appdata.uuid', (done) => {
 		const req = new_req();
 		mw_request_start(req, {}, () => {
@@ -48,15 +58,6 @@ describe('mw_request_start()', () => {
 		const res = {};
 		mw_request_start(req, res, () => {
 			expect(res).toHaveProperty('locals', {});
-			done();
-		});
-	});
-	it('should set req.appdata.time_routes', (done) => {
-		const req = new_req();
-		mw_request_start(req, {}, () => {
-			expect(req.appdata).toHaveProperty('time_routes');
-			expect(req.appdata.time_routes).toBeGreaterThan(Date.now() - 1000);
-			expect(req.appdata.time_routes).toBeLessThan(Date.now() + 1000);
 			done();
 		});
 	});

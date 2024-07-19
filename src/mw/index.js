@@ -8,7 +8,6 @@ import load_session from './load_session.mw.js';
 import load_user from './load_user.mw.js';
 import load_utm from './load_utm.mw.js';
 import rate_limit from './rate_limit.mw.js';
-import request_early from './request_early.mw.js';
 import request_end from './request_end.mw.js';
 import request_start from './request_start.mw.js';
 import require_key from './require_key.mw.js';
@@ -25,7 +24,6 @@ export default {
 	load_user,
 	load_utm,
 	rate_limit,
-	request_early,
 	request_end,
 	request_start,
 	require_key,

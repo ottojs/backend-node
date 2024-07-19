@@ -11,7 +11,7 @@ describe('CORS corsCheck()', () => {
 	it('should not allow origin empty string', () => {
 		corsCheck('', (err, allow) => {
 			expect(err).not.toBe(null);
-			expect(err.message).toBe('Not allowed by CORS');
+			expect(err.message).toBe('forbidden');
 			expect(allow).toBe(undefined);
 		});
 	});
@@ -30,7 +30,7 @@ describe('CORS corsCheck()', () => {
 	it('should not allow unknown origin', () => {
 		corsCheck('https://example.com', (err, allow) => {
 			expect(err).not.toBe(null);
-			expect(err.message).toBe('Not allowed by CORS');
+			expect(err.message).toBe('forbidden');
 			expect(allow).toBe(undefined);
 		});
 	});

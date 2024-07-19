@@ -28,7 +28,7 @@ function corsCheck(origin, callback) {
 		callback(null, true);
 	} else {
 		log('WARNING ORIGIN NOT ALLOWED: ' + origin);
-		callback(new Error('Not allowed by CORS'));
+		callback(new Error('forbidden'));
 	}
 }
 
