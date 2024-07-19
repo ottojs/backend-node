@@ -13,7 +13,7 @@ import tasks_delete_id from './tasks_delete_id.route.js';
 import tasks_get from './tasks_get.route.js';
 import tasks_patch_id from './tasks_patch_id.route.js';
 import tasks_post from './tasks_post.route.js';
-import upload_url_post from './upload_url_post.route.js';
+import uploads_post from './uploads_post.route.js';
 import users_get_id from './users_get_id.route.js';
 import users_get from './users_get.route.js';
 import users_patch_id from './users_patch_id.route.js';
@@ -34,7 +34,7 @@ export default {
 	tasks_get,
 	tasks_patch_id,
 	tasks_post,
-	upload_url_post,
+	uploads_post,
 	users_get_id,
 	users_get,
 	users_patch_id,

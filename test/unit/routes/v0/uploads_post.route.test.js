@@ -1,7 +1,7 @@
 // Modules
 import { randomUUID } from 'node:crypto';
 import config from '../../../../src/lib/config.js';
-import r_v0_upload_url_post from '../../../../src/routes/v0/upload_url_post.route.js';
+import r_v0_uploads_post from '../../../../src/routes/v0/uploads_post.route.js';
 
 function new_req() {
 	return {
@@ -23,13 +23,13 @@ function new_res() {
 	};
 }
 
-describe('r_v0_upload_url_post()', () => {
+describe('r_v0_uploads_post()', () => {
 	describe('when missing extension', () => {
 		it('should call next with error 400 bad request', (done) => {
 			const req = new_req();
 			delete req.body.extension;
 			const res = new_res();
-			r_v0_upload_url_post(req, res, (e) => {
+			r_v0_uploads_post(req, res, (e) => {
 				expect(e.message).toEqual('bad_request');
 				done();
 			});
@@ -40,7 +40,7 @@ describe('r_v0_upload_url_post()', () => {
 			const req = new_req();
 			req.body.extension = 'e';
 			const res = new_res();
-			r_v0_upload_url_post(req, res, (e) => {
+			r_v0_uploads_post(req, res, (e) => {
 				expect(e.message).toEqual('bad_request');
 				done();
 			});
@@ -51,7 +51,7 @@ describe('r_v0_upload_url_post()', () => {
 			const req = new_req();
 			req.body.extension = 'exe';
 			const res = new_res();
-			r_v0_upload_url_post(req, res, (e) => {
+			r_v0_uploads_post(req, res, (e) => {
 				expect(e.message).toEqual('bad_request');
 				done();
 			});
@@ -65,7 +65,7 @@ describe('r_v0_upload_url_post()', () => {
 			res.status = (s) => {
 				status = s;
 			};
-			r_v0_upload_url_post(req, res, (e) => {
+			r_v0_uploads_post(req, res, (e) => {
 				expect(e).toEqual(undefined);
 				expect(status).toEqual(201);
 				done();
@@ -78,7 +78,7 @@ describe('r_v0_upload_url_post()', () => {
 			res.json = (j) => {
 				json = j;
 			};
-			r_v0_upload_url_post(req, res, (e) => {
+			r_v0_uploads_post(req, res, (e) => {
 				expect(e).toEqual(undefined);
 				expect(json).toEqual({
 					status: 'created',
@@ -100,7 +100,7 @@ describe('r_v0_upload_url_post()', () => {
 		it('should call next with undefined', (done) => {
 			const req = new_req();
 			const res = new_res();
-			r_v0_upload_url_post(req, res, done);
+			r_v0_uploads_post(req, res, done);
 		});
 	});
 });

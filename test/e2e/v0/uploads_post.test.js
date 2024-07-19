@@ -4,7 +4,7 @@ import req from 'supertest';
 import seed from '../../data/seed.js';
 import app from '../../../src/index.js';
 
-describe('POST /v0/upload_url', () => {
+describe('POST /v0/uploadsl', () => {
 	let cookies_owner;
 	beforeAll(async () => {
 		await seed.reset();
@@ -15,7 +15,7 @@ describe('POST /v0/upload_url', () => {
 		let res;
 		beforeAll(async () => {
 			res = await req(app)
-				.post('/v0/upload_url')
+				.post('/v0/uploads')
 				.set('Accept', 'application/json')
 				.set('Content-Type', 'application/json');
 		});
@@ -36,7 +36,7 @@ describe('POST /v0/upload_url', () => {
 		let res;
 		beforeAll(async () => {
 			res = await req(app)
-				.post('/v0/upload_url')
+				.post('/v0/uploads')
 				.set('Accept', 'application/json')
 				.set('Content-Type', 'application/json')
 				.set('Cookie', cookies_owner)
@@ -59,7 +59,7 @@ describe('POST /v0/upload_url', () => {
 		let res;
 		beforeAll(async () => {
 			res = await req(app)
-				.post('/v0/upload_url')
+				.post('/v0/uploads')
 				.set('Accept', 'application/json')
 				.set('Content-Type', 'application/json')
 				.set('Cookie', cookies_owner)
@@ -84,7 +84,7 @@ describe('POST /v0/upload_url', () => {
 		let res;
 		beforeAll(async () => {
 			res = await req(app)
-				.post('/v0/upload_url')
+				.post('/v0/uploads')
 				.set('Accept', 'application/json')
 				.set('Content-Type', 'application/json')
 				.set('Cookie', cookies_owner)

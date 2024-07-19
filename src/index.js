@@ -60,7 +60,7 @@ app.get('/v0/tasks', [mw.require_login, r_v0.tasks_get]);
 app.post('/v0/tasks', [mw.require_login, r_v0.tasks_post]);
 app.patch('/v0/tasks/:uuid', [mw.require_login, r_v0.tasks_patch_id]);
 app.delete('/v0/tasks/:uuid', [mw.require_login, r_v0.tasks_delete_id]);
-app.post('/v0/upload_url', [mw.require_login, r_v0.upload_url_post]);
+app.post('/v0/uploads', [mw.require_login, r_v0.uploads_post]);
 app.post('/v0/payments', [r_v0.payments_post]);
 app.post('/v0/analytics/sessions', [r_v0.analytics_sessions_post]);
 app.patch('/v0/analytics/sessions/:uuid', [r_v0.analytics_sessions_patch_id]);

@@ -44,7 +44,7 @@ const upload_file_schema = z.object({
 
 // TODO: Store creation in DB so we can trace origin
 // TODO: Scan content for matching mime
-async function r_v0_upload_url_post(req, res, next) {
+async function r_v0_uploads_post(req, res, next) {
 	// Check body
 	const check = upload_file_schema.safeParse(req.body);
 	if (check.success === false) {
@@ -88,4 +88,4 @@ async function r_v0_upload_url_post(req, res, next) {
 	return next();
 }
 
-export default r_v0_upload_url_post;
+export default r_v0_uploads_post;
