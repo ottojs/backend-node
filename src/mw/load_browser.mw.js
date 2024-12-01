@@ -1,5 +1,5 @@
 // Modules
-import { UAParser } from 'ua-parser-js';
+import { UAParser } from 'my-ua-parser';
 import debug from 'debug';
 const log = debug('app:mw:browser');
 
