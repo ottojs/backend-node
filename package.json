@@ -43,7 +43,7 @@
 		}
 	},
 	"dependencies": {
-		"@google-cloud/storage": "7.14.0",
+		"@google-cloud/storage": "7.15.0",
 		"@sendgrid/mail": "8.1.4",
 		"argon2": "0.41.1",
 		"body-parser": "1.20.3",
@@ -57,7 +57,7 @@
 		"form-data": "4.0.1",
 		"helmet": "8.0.0",
 		"lodash": "4.17.21",
-		"mailgun.js": "10.4.0",
+		"mailgun.js": "11.1.0",
 		"my-ua-parser": "2.0.4",
 		"pg": "8.13.1",
 		"pg-hstore": "2.3.4",
