@@ -14,7 +14,8 @@ async function mw_load_session(req, res, next) {
 	};
 	if (
 		req.signedCookies &&
-		req.signedCookies[config.COOKIE_NAME_SESSION] !== undefined
+		req.signedCookies[config.COOKIE_NAME_SESSION] !== undefined &&
+		req.signedCookies[config.COOKIE_NAME_SESSION] !== false
 	) {
 		const session_id = req.signedCookies[config.COOKIE_NAME_SESSION];
 		const session_result = await sql.models.session.findOne({

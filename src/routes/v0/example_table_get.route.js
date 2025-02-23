@@ -1,4 +1,3 @@
-
 async function r_v0_example_table_get(req, res, next) {
 	let returnable = [
 		{
