@@ -18,6 +18,7 @@ import users_get_id from './users_get_id.route.js';
 import users_get from './users_get.route.js';
 import users_patch_id from './users_patch_id.route.js';
 import users_post from './users_post.route.js';
+import example_table_get from './example_table_get.route.js';
 
 export default {
 	accounts_get,
@@ -39,4 +40,5 @@ export default {
 	users_get,
 	users_patch_id,
 	users_post,
+	example_table_get,
 };
