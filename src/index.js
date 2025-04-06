@@ -67,7 +67,7 @@ app.patch('/v0/analytics/sessions/:uuid', [r_v0.analytics_sessions_patch_id]);
 app.post('/v0/analytics/events', [r_v0.analytics_events_post]);
 app.post('/v0/emails', [r_v0.emails_post]);
 app.get('/v0/example-table', [r_v0.example_table_get]);
-app.all('*', r_404);
+app.all('/*splat', r_404);
 
 // Error Handler
 app.use(mw.error_handler);
