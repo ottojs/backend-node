@@ -17,8 +17,8 @@ const server = http.createServer(app);
 websockets(server);
 server.listen(config.PORT, config.LISTEN, (err) => {
 	if (err) {
-    throw err
-  }
+		throw err;
+	}
 	console.log(
 		`[HTTP:SERVER] OK - Listening on ${config.LISTEN}:${config.PORT}`
 	);
