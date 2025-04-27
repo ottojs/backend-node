@@ -8,7 +8,7 @@ Boilerplate code for Backend (Node.js)
 
 ```bash
 npm install;
-# Tests uses SQLite database
+# Tests use the SQLite database
 npm run test;
 ```
 
