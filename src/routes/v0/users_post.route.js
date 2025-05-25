@@ -11,8 +11,8 @@ async function r_v0_users_post(req, res, next) {
 		return next(new Error('bad_request'));
 	}
 
-	// Check Code
-	if (req.body.code !== config.REGISTER_CODE) {
+	// Check Code (if required)
+	if (config.REQUIRE_REGISTER_CODE && req.body.code !== config.REGISTER_CODE) {
 		return next(new Error('forbidden'));
 	}
 

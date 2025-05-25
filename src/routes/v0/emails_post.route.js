@@ -7,7 +7,10 @@ const req_body_schema = z.object({
 	// Required
 	to_address: z.string().trim().toLowerCase().email(),
 	to_name: z.string().trim().toLowerCase().min(1).max(60),
-	code: z.enum([config.REGISTER_CODE]),
+	// Optional based on config
+	code: config.REQUIRE_REGISTER_CODE
+		? z.enum([config.REGISTER_CODE])
+		: z.string().optional(),
 });
 
 async function r_v0_emails_post(req, res, next) {

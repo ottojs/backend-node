@@ -96,6 +96,8 @@ const STRIPE_SUBSCRIPTION_PRICE_ID = env_default(
 
 // Register Code
 const REGISTER_CODE = env_default('REGISTER_CODE', '1234');
+const REQUIRE_REGISTER_CODE =
+	env_default('REQUIRE_REGISTER_CODE', 'true') === 'true';
 
 // App Data
 const API_DOMAIN = env_default('API_DOMAIN', 'localhost:8080');
@@ -134,6 +136,7 @@ export default {
 	APP_DOMAIN,
 	APP_URI,
 	REGISTER_CODE,
+	REQUIRE_REGISTER_CODE,
 	// Calculated
 	IS_PRODUCTION,
 };
