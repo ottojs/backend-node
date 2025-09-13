@@ -1,6 +1,6 @@
 // Modules
 import { randomUUID } from 'node:crypto';
-import { ZodError, ZodIssueCode } from 'zod';
+import { ZodError } from 'zod';
 import sql from '../../../../src/sql/index.js';
 
 describe('ModelUser', () => {
@@ -16,16 +16,8 @@ describe('ModelUser', () => {
 			params.username = 'username';
 			const result = sql.models.user.schema(params);
 			expect(result).toHaveProperty('success', false);
-			expect(result.error.flatten()).toEqual(
-				ZodError.create([
-					{
-						code: ZodIssueCode.invalid_string,
-						path: ['username'],
-						message: 'Invalid email',
-						fatal: true,
-					},
-				]).flatten()
-			);
+			expect(result.error.flatten().fieldErrors).toHaveProperty('username');
+			expect(result.error.flatten().fieldErrors.username).toContain('Invalid email address');
 		});
 	});
 	describe('schema_update()', () => {
@@ -42,32 +34,16 @@ describe('ModelUser', () => {
 			delete params.name_first;
 			const result = sql.models.user.schema_update(params);
 			expect(result).toHaveProperty('success', false);
-			expect(result.error.flatten()).toEqual(
-				ZodError.create([
-					{
-						code: ZodIssueCode.invalid_string,
-						path: ['name_first'],
-						message: 'Required',
-						fatal: true,
-					},
-				]).flatten()
-			);
+			expect(result.error.flatten().fieldErrors).toHaveProperty('name_first');
+			expect(result.error.flatten().fieldErrors.name_first).toContain('Invalid input: expected string, received undefined');
 		});
 		it('should return invalid when name_last is not provided', () => {
 			const params = valid_params();
 			delete params.name_last;
 			const result = sql.models.user.schema_update(params);
 			expect(result).toHaveProperty('success', false);
-			expect(result.error.flatten()).toEqual(
-				ZodError.create([
-					{
-						code: ZodIssueCode.invalid_string,
-						path: ['name_last'],
-						message: 'Required',
-						fatal: true,
-					},
-				]).flatten()
-			);
+			expect(result.error.flatten().fieldErrors).toHaveProperty('name_last');
+			expect(result.error.flatten().fieldErrors.name_last).toContain('Invalid input: expected string, received undefined');
 		});
 	});
 	describe('uuid', () => {
